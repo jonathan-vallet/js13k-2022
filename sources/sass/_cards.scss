@@ -1,0 +1,175 @@
+$w: 30.6rem;
+$h: 54rem;
+$cardW: 24rem;
+$cardH: 32rem;
+$cardTopH: 20.5rem;
+$cardBtmH: $cardH - $cardTopH;
+$imgSize: 10rem;
+
+$purple: #7132b9;
+$blue: #248cb6;
+$indigo: #303f9f;
+$cyan: #26c6da;
+$lime: #afb42b;
+$brown: #795548;
+
+$orange: #ff945a;
+$green: #b1da96;
+
+.demo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: $w;
+    height: $h;
+    margin-left: $w/-2;
+    margin-top: $h/-2;
+    background: #f6f6f5;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.demo__card {
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 100%;
+
+    &.reset {
+        transition: transform 0.3s;
+        transform: translateX(0) !important;
+
+        .demo__card__choice {
+            transition: opacity 0.3s;
+            opacity: 0 !important;
+        }
+    }
+
+    &.inactive {
+        transition: transform 0.3s;
+    }
+
+    &.to-left {
+        transform: translateX(-30rem) rotate(-30deg) !important;
+    }
+
+    &.to-right {
+        transform: translate(30rem) rotate(30deg) !important;
+    }
+
+    &.below {
+        z-index: 1;
+    }
+
+    &__top {
+        height: $cardTopH;
+        padding-top: 4rem;
+
+        &.purple {
+            background: $purple;
+        }
+        &.blue {
+            background: $blue;
+        }
+        &.indigo {
+            background: $indigo;
+        }
+        &.cyan {
+            background: $cyan;
+        }
+        &.lime {
+            background: $lime;
+        }
+        &.brown {
+            background: $brown;
+        }
+    }
+
+    &__img {
+        overflow: hidden;
+        width: $imgSize;
+        height: $imgSize;
+        margin: 0 auto 1.5rem;
+        border-radius: 50%;
+        border: 0.5rem solid #ffffff;
+        background-image: url("//s3-us-west-2.amazonaws.com/s.cdpn.io/142996/profile/profile-512_5.jpg");
+        background-size: cover;
+    }
+
+    &__name {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    &__btm {
+        height: $cardBtmH;
+        background: #ffffff;
+    }
+
+    &__we {
+        text-align: center;
+        font-size: 2.2rem;
+        line-height: $cardBtmH;
+    }
+
+    &__choice {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+
+        &:before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 2rem;
+            height: 2rem;
+            margin-left: -1rem;
+            color: #fff;
+            border-radius: 50%;
+            box-shadow: -2rem -3rem #fff, 2rem -3rem #fff;
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 4rem;
+            height: 1.5rem;
+            margin-left: -2rem;
+            border: 0.6rem solid #fff;
+            border-bottom: none;
+            border-top-left-radius: 1.5rem;
+            border-top-right-radius: 1.5rem;
+        }
+
+        &.m--reject {
+            background: $orange;
+        }
+        &.m--like {
+            background: $green;
+
+            &:after {
+                transform: scaleY(-1);
+            }
+        }
+    }
+
+    &__drag {
+        z-index: 5;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        cursor: grab;
+    }
+}
