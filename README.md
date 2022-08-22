@@ -1,4 +1,4 @@
-# JS13K Starter
+# JS13K 2022
 
 This repository allow you to quick start your JS13K project to develop, compile, minify and zip you JS13K project.
 
