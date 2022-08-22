@@ -33,6 +33,14 @@ const raceList = [
     maxWeight: 120,
     maxAge: 100,
   },
+  {
+    name: "troll",
+    minHeight: 4.2,
+    maxHeight: 6.4,
+    minWeight: 200,
+    maxWeight: 400,
+    maxAge: 150,
+  },
 ];
 
 const deathCauseList = [
