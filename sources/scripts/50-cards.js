@@ -96,3 +96,26 @@ function release() {
 function generateNewCard() {
   // TODO: Créer un nouveau personnage et lui ajouter la carte au DOM
 }
+
+let htmlCode = ``;
+
+raceList.forEach(function (singleCard) {
+  htmlCode +=
+    `<div class="card">
+      <div class="card_image">
+        <img src="https://via.placeholder.com/150">
+      </div>
+      <div>
+        <h3>People: ${singleCard.name}</h3>
+        <p>First Name: ${getRandomItem(firstNameList.human)}</p>
+        <p>Last Name: ${getRandomItem(lastNameList.human)}</p>
+        <p>Height: ${singleCard.minHeight}</p>
+        <p>Age: ${singleCard.maxAge}</p>
+        <p>Death Cause: ${getRandomItem(deathCauseList)}</p>
+      </div>
+    </div>`;
+});
+
+const deathCards = document.getElementById("cardList");
+
+deathCards.innerHTML = htmlCode;
