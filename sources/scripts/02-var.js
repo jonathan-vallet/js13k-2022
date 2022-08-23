@@ -1,4 +1,8 @@
 // Set your global var here
+let characterList = [];
+let currentCardIndex = 0;
+
+const $cardList = $("cardList");
 
 const raceList = [
   {
@@ -65,7 +69,7 @@ const deathCauseList = [
 ];
 
 const firstNameList = {
-  'human': [
+  human: [
     "Jared",
     "Elvin",
     "Eddie",
@@ -75,9 +79,9 @@ const firstNameList = {
     "Jarman",
     "Larry",
     "Brand",
-    "Bruce"
+    "Bruce",
   ],
-  'elf': [
+  elf: [
     "Onaandal",
     "Maldro",
     "Aleerdh",
@@ -87,9 +91,9 @@ const firstNameList = {
     "Fhailth",
     "Ruvalam",
     "Esceri",
-    "Vamoder"
+    "Vamoder",
   ],
-  'dwarf': [
+  dwarf: [
     "Elrdut",
     "Kratmit",
     "Dhoghuki",
@@ -99,9 +103,9 @@ const firstNameList = {
     "Yustrumlir",
     "Nurun",
     "Korroli",
-    "Barinmaem"
+    "Barinmaem",
   ],
-  'orc': [
+  orc: [
     "Xig",
     "Mergigoth",
     "Hegug",
@@ -111,9 +115,9 @@ const firstNameList = {
     "Gnorth",
     "Pitgurat",
     "Podagog",
-    "Jugag"
+    "Jugag",
   ],
-  'troll': [
+  troll: [
     "Ugoki",
     "Rashi",
     "Seshi",
@@ -123,12 +127,12 @@ const firstNameList = {
     "Zulgeteb",
     "Kaijin",
     "Seji",
-    "Hakalai"
+    "Hakalai",
   ],
 };
 
 const lastNameList = {
-  'human': [
+  human: [
     "Dayton",
     "Woodward",
     "Hall",
@@ -138,9 +142,9 @@ const lastNameList = {
     "Dale",
     "Roland",
     "Wallace",
-    "Junior"
+    "Junior",
   ],
-  'elf': [
+  elf: [
     "Escrom",
     "Salnyn",
     "Cohirtlar",
@@ -150,9 +154,9 @@ const lastNameList = {
     "Arlossae",
     "Conaael",
     "Miiihel",
-    "Piravym"
+    "Piravym",
   ],
-  'dwarf': [
+  dwarf: [
     "Berylguard",
     "Duskview",
     "Leadhelm",
@@ -162,9 +166,9 @@ const lastNameList = {
     "Trollbelly",
     "Orebuster",
     "Warmgrip",
-    "Kegtoe"
+    "Kegtoe",
   ],
-  'orc': [
+  orc: [
     "Korgulg",
     "Nofhug",
     "Slog",
@@ -174,9 +178,9 @@ const lastNameList = {
     "Zogugh",
     "Zahgigoth",
     "Podagog",
-    "Quimghig"
+    "Quimghig",
   ],
-  'troll': [
+  troll: [
     "Xia",
     "Yesha",
     "Katanja",
@@ -186,6 +190,6 @@ const lastNameList = {
     "Anji",
     "Ziataja",
     "Ajia",
-    "Esha"
+    "Esha",
   ],
 };

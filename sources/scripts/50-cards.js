@@ -3,12 +3,31 @@ var $currentCard = null;
 var cardAngle = 0;
 var minDistancetoSwipe = 80;
 
-function initCardSwipe() {
-  let cardList = $$$(".card");
+// Generates card element from character info
+function generateCharacterCard(character) {
+  let $card = createElement("div");
+  $card.classList.add("card");
+  $card.innerHTML = `
+      <div class="card__image">
+        <img src="https://via.placeholder.com/150">
+      </div>
+      <div>
+        <p class="card__race">People: ${character.race}</p>
+        <p class="card__name">Name: ${character.name}</p>
+        <p>Height: ${character.height} m</p>
+        <p>Weight: ${character.weight} kg</p>
+        <p>Age: ${character.age} years</p>
+        <p>Death Cause: ${character.deathCause}</p>
+      </div>
+      <div class="card__choice -accept"></div>
+      <div class="card__choice -reject"></div>
+  `;
 
-  [...cardList].forEach((card) => cardDownHandler(card));
+  cardDownHandler($card);
+  return $card;
 }
 
+// Adds card events to drag
 function cardDownHandler(card) {
   card.addEventListener("mousedown", (e) => startCardDrag(card, e, "mouse"));
   card.addEventListener("touchstart", (e) => startCardDrag(card, e, "touch"));
@@ -75,7 +94,7 @@ function release() {
 
     setTimeout(function () {
       $currentCard.remove();
-      generateNewCard();
+      addCharacter();
     }, 300);
   }
 
@@ -92,32 +111,3 @@ function release() {
     swipedDistance = 0;
   }, 300);
 }
-
-function generateNewCard() {
-  // TODO: Créer un nouveau personnage et lui ajouter la carte au DOM
-}
-
-let htmlCode = ``;
-
-raceList.forEach(function (singleCard) {
-  htmlCode +=
-    `<div class="card">
-      <div class="card_image">
-        <img src="https://via.placeholder.com/150">
-      </div>
-      <div>
-        <h3>People: ${singleCard.name}</h3>
-        <p>First Name: ${getRandomItem(firstNameList.human)}</p>
-        <p>Last Name: ${getRandomItem(lastNameList.human)}</p>
-        <p>Height: ${getRandomNumber(singleCard.minHeight, singleCard.maxHeight)} m</p>
-        <p>Weight: ${getRandomNumber(singleCard.minWeight, singleCard.maxWeight)} kg</p>
-        <p>Age: ${getRandomNumber(singleCard.minAge, singleCard.maxAge)} years</p>
-        <p>Death Cause: ${getRandomItem(deathCauseList)}</p>
-      </div>
-    </div>`;
-    console.log(singleCard.minAge);
-});
-
-const deathCards = document.getElementById("cardList");
-
-deathCards.innerHTML = htmlCode;

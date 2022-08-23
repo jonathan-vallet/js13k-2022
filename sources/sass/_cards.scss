@@ -36,12 +36,9 @@ $green: #b1da96;
     top: 0;
     width: 100%;
     height: 100%;
+    font-size: 18px;
     transform-origin: 50% 100%;
     background-color: #248cb6;
-
-    &:nth-child(2) {
-        background-color: #303f9f;
-    }
 
     &.reset {
         transition: transform 0.3s;

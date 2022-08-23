@@ -1,26 +1,23 @@
-function generateCharacters() {
-  var characters = [];
-  for (var i = 0; i < 20; ++i) {
-    characters.push(generateCharacter());
-  }
+function addCharacter() {
+  characterList.push(generateCharacter());
+  let $card = generateCharacterCard(characterList[currentCardIndex++]);
+
+  // Insert new card first
+  $cardList.insertBefore($card, $cardList.firstChild);
 }
 
 function generateCharacter() {
-  // TODO: generate a random character from raceList, deathCauseList
   let race = getRandomItem(raceList);
-  let deathCause = getRandomItem(deathCauseList);
+  let character = {
+    race: race.name,
+    name: `${getRandomItem(firstNameList[race.name])} ${getRandomItem(
+      lastNameList[race.name]
+    )}`,
+    deathCause: getRandomItem(deathCauseList),
+    height: getRandomGaussian(race.minHeight, race.maxHeight),
+    weight: getRandomGaussian(race.minWeight, race.maxWeight),
+    age: getRandomGaussian(16, race.maxAge),
+  };
 
-  let minHeight = raceList.map(e => e.minHeight);
-  let maxHeight = raceList.map(e => e.maxHeight);
-
-  let height = getRandomNumber(minHeight,maxHeight);
-
-  let minWeight = raceList.map(e => e.minWeight);
-  let maxWeight = raceList.map(e => e.maxWeight);
-
-  let weight = getRandomNumber(minWeight,maxWeight);
-
-  console.log(race, deathCause, height, weight);
+  return character;
 }
-
-generateCharacters();
