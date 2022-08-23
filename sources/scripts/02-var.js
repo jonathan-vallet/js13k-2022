@@ -60,7 +60,7 @@ const deathCauseList = [
   "necromancy",
   "execution",
   "magic curse",
-  "fall from horse",
+  "fell from horse",
   "impaled by a unicorn's horn",
 ];
 

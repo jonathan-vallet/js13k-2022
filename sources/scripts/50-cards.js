@@ -109,11 +109,13 @@ raceList.forEach(function (singleCard) {
         <h3>People: ${singleCard.name}</h3>
         <p>First Name: ${getRandomItem(firstNameList.human)}</p>
         <p>Last Name: ${getRandomItem(lastNameList.human)}</p>
-        <p>Height: ${singleCard.minHeight}</p>
-        <p>Age: ${singleCard.maxAge}</p>
+        <p>Height: ${getRandomNumber(singleCard.minHeight, singleCard.maxHeight)} m</p>
+        <p>Weight: ${getRandomNumber(singleCard.minWeight, singleCard.maxWeight)} kg</p>
+        <p>Age: ${getRandomNumber(singleCard.minAge, singleCard.maxAge)} years</p>
         <p>Death Cause: ${getRandomItem(deathCauseList)}</p>
       </div>
     </div>`;
+    console.log(singleCard.minAge);
 });
 
 const deathCards = document.getElementById("cardList");

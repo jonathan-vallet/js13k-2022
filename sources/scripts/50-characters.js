@@ -1,6 +1,6 @@
 function generateCharacters() {
   var characters = [];
-  for (var i = 0; i < 5; ++i) {
+  for (var i = 0; i < 20; ++i) {
     characters.push(generateCharacter());
   }
 }
