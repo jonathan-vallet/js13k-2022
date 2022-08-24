@@ -5,22 +5,23 @@ var minDistancetoSwipe = 80;
 
 // Generates card element from character info
 function generateCharacterCard(character) {
+  character = { ...character, ...character.error };
   let $card = createElement("div");
   $card.classList.add("card");
   $card.innerHTML = `
-      <div class="card__image">
-        <img src="https://via.placeholder.com/150">
-      </div>
-      <div>
-        <p class="card__race">People: ${character.race}</p>
-        <p class="card__name">Name: ${character.name}</p>
-        <p>Height: ${character.height} m</p>
-        <p>Weight: ${character.weight} kg</p>
-        <p>Age: ${character.age} years</p>
-        <p>Death Cause: ${character.deathCause}</p>
-      </div>
-      <div class="card__choice -accept"></div>
-      <div class="card__choice -reject"></div>
+<div class="card__image">
+  <img src="https://via.placeholder.com/150">
+</div>
+<div>
+  <p class="card__race">People: ${character.race}</p>
+  <p class="card__name">Name: ${character.name}</p>
+  <p>Height: ${character.height} m</p>
+  <p>Weight: ${character.weight} kg</p>
+  <p>Age: ${character.age} years</p>
+  <p>Death Cause: ${character.deathCause}</p>
+</div>
+<div class="card__choice -accept"></div>
+<div class="card__choice -reject"></div>
   `;
 
   cardDownHandler($card);

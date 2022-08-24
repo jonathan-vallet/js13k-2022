@@ -19,5 +19,15 @@ function generateCharacter() {
     age: getRandomGaussian(16, race.maxAge),
   };
 
+  // Adds error randomly
+  if (random() > 0.4) {
+    do {
+      var newRace = getRandomItem(raceList);
+    } while (newRace.name === character.race.name);
+    character.error = {
+      race: newRace.name,
+    };
+  }
+
   return character;
 }
