@@ -99,6 +99,56 @@ function release() {
     }, 300);
   }
 
+  function createToast({color}){
+    const toastInfo = document.createElement("p");
+    toastInfo.className = "toast";
+
+    toastInfo.textContent = `Cookie ${name} ${state}.`;
+    toastInfo.style.backgroundColor = color;
+    toastsContainer.appendChild(toastInfo)
+
+    setTimeout(() =>{
+      toastInfo.remove()
+    }, 2500)
+  }
+
+  if ($currentCard.classList.contains("to-left")) {
+    const toastsContainer = document.querySelector(".toasts-container")
+
+    function createToast() {
+      const toastInfo = document.createElement("p");
+      toastInfo.className = "toast";
+
+      toastInfo.textContent = "Beware ! -2 points ...";
+      toastInfo.style.backgroundColor = "red";
+      toastsContainer.appendChild(toastInfo)
+
+      setTimeout(() =>{
+        toastInfo.remove()
+      }, 2500)
+    }
+
+    createToast();
+  }
+  else if ($currentCard.classList.contains("to-right")) {
+    const toastsContainer = document.querySelector(".toasts-container")
+
+    function createToast() {
+      const toastInfo = document.createElement("p");
+      toastInfo.className = "toast";
+
+      toastInfo.textContent = "Hurray ! +2 points !";
+      toastInfo.style.backgroundColor = "green";
+      toastsContainer.appendChild(toastInfo)
+
+      setTimeout(() =>{
+        toastInfo.remove()
+      }, 2500)
+    }
+
+    createToast();
+  }
+
   if (Math.abs(swipedDistance) < minDistancetoSwipe) {
     $currentCard.classList.add("reset");
   }

@@ -1,6 +1,7 @@
 // Set your global var here
 let characterList = [];
 let currentCardIndex = 0;
+let currentPoints = 0;
 
 const $cardList = $("cardList");
 
