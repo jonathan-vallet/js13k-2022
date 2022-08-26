@@ -2,7 +2,9 @@ function startGame() {
   characterList = [];
   currentCardIndex = 0;
 
-  // Always add a character before to see it under current one
+  // Adds characters at start to see "deck"
+  addCharacter();
+  addCharacter();
   addCharacter();
   addCharacter();
 }

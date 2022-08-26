@@ -12,9 +12,13 @@
 html {
     font-size: 62.5%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: $primary-color-1;
+    height: 100%;
 }
 
 body {
+    display: flex;
     background: $background-color;
     overflow: hidden;
+    height: 100%;
 }

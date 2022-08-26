@@ -1,12 +1,20 @@
-#cardList {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 100vw;
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    width: 80vw;
     max-width: 400px;
-    height: 80vh;
-    max-height: 600px;
-    transform: translate(-50%, -50%);
+    height: 90vh;
+    margin: auto;
+    user-select: none;
+}
+
+#cardList {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-height: 540px;
 }
 
 .card {
@@ -15,13 +23,27 @@
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
     font-size: 18px;
-    padding: 16px;
     transform-origin: 50% 100%;
     background: #fff;
-    box-shadow: 0 3px 8px rgba(63, 63, 63, 0.25);
+    border-bottom: 5px solid #dadada;
     border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    animation: append-card 0.2s ease;
+
+    &:nth-child(3) {
+        transform: translateY(12px) scale(0.95);
+    }
+
+    &:nth-child(2) {
+        transform: translateY(24px) scale(0.9);
+    }
+
+    &:first-child {
+        transform: translateY(36px) scale(0.85);
+        opacity: 0;
+    }
 
     &.reset {
         transition: transform 0.3s;
@@ -45,6 +67,7 @@
         transform: translate(30rem) rotate(30deg) !important;
     }
 
+    // Dragabble element over all others
     &__drag {
         z-index: 5;
         position: absolute;
@@ -56,7 +79,7 @@
     }
 
     p {
-        margin-top: 16px;
+        padding-top: 16px;
     }
 
     b:not(:first-child) {
@@ -64,11 +87,27 @@
     }
 }
 
+.card__content {
+    position: relative;
+    padding: 0 16px 16px;
+}
+
+.card__race {
+    position: absolute;
+    top: 0;
+    right: 16px;
+    padding: 8px 12px;
+    transform: translateY(-50%);
+    background: $primary-color-1;
+    border-radius: 12px;
+    color: $color-white;
+    font-size: 24px;
+}
+
 .card__image {
     position: relative;
     width: 100%;
-    padding-top: 85%;
-    border-radius: 12px;
+    padding-top: 93%;
 
     svg {
         position: absolute;
@@ -111,43 +150,12 @@
     height: 100%;
     opacity: 0;
 
-    &::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 20px;
-        height: 20px;
-        margin-left: -10px;
-        color: #fff;
-        border-radius: 50%;
-        box-shadow: -20px -30px #fff, 20px -30px #fff;
-    }
-
-    &:after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 40px;
-        height: 15px;
-        margin-left: -20px;
-        border: 6px solid #fff;
-        border-bottom: none;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-    }
-
     &.-reject {
-        background: #e35b5b;
+        background: rgba($color-orange, 0.7);
     }
 
     &.-accept {
-        background: #8be895;
-
-        &:after {
-            transform: scaleY(-1);
-        }
+        background: rgba($color-green, 0.7);
     }
 }
 
@@ -166,6 +174,7 @@
 }
 
 .timer-container {
-    text-align: center;
-    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
 }

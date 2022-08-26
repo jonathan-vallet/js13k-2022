@@ -6,12 +6,14 @@
     <link rel="stylesheet" href="css/style.css" inline />
   </head>
   <body>
-    <div id="cardList"></div>
-    <div class="toasts-container"></div>
-
-    <div class="timer-container">
-      The game ends in <span id="time">05:00</span> minutes !
+    <div id="wrapper">
+      <div class="timer-container">
+        <p>Score <b id="score">00</b></p>
+        <p>Timer <b id="time">05:00</b></p>
+      </div>
+      <div id="cardList"></div>
     </div>
+    <div class="toasts-container"></div>
     <script src="scripts/game.js" inline></script>
   </body>
 </html>

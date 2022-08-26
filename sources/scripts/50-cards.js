@@ -12,10 +12,10 @@ function generateCharacterCard(character) {
 <div class="card__image" style="background: #${character.backgroundColor}">
 ${drawCharacterFace(character)}
  </div>
-<div>
+<div class="card__content">
+<b class="card__race">🫀 ${character.race}</b>
  <p class="card__name">${character.name}</p>
- <p class="card__race">People: ${character.race}</p>
- <p>💀: ${character.deathCause}</p>
+ <p>💀<b> ${character.deathCause}</b></p>
  <p><b>${character.height}</b>m
  <b>${character.weight}</b>kg
  <b>${character.age}</b>yo</p>
