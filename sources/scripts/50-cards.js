@@ -9,20 +9,20 @@ function generateCharacterCard(character) {
   let $card = createElement("div");
   $card.classList.add("card");
   $card.innerHTML = `
-<div class="card__image">
-  <img src="https://via.placeholder.com/150">
-</div>
+<div class="card__image" style="background: #${character.backgroundColor}">
+${drawCharacterFace(character)}
+ </div>
 <div>
-  <p class="card__race">People: ${character.race}</p>
-  <p class="card__name">Name: ${character.name}</p>
-  <p>Height: ${character.height} m</p>
-  <p>Weight: ${character.weight} kg</p>
-  <p>Age: ${character.age} years</p>
-  <p>Death Cause: ${character.deathCause}</p>
+ <p class="card__name">${character.name}</p>
+ <p class="card__race">People: ${character.race}</p>
+ <p>💀: ${character.deathCause}</p>
+ <p><b>${character.height}</b>m
+ <b>${character.weight}</b>kg
+ <b>${character.age}</b>yo</p>
 </div>
 <div class="card__choice -accept"></div>
 <div class="card__choice -reject"></div>
-  `;
+`;
 
   cardDownHandler($card);
   return $card;
@@ -99,21 +99,21 @@ function release() {
     }, 300);
   }
 
-  function createToast({color}){
+  function createToast({ color }) {
     const toastInfo = document.createElement("p");
     toastInfo.className = "toast";
 
     toastInfo.textContent = `Cookie ${name} ${state}.`;
     toastInfo.style.backgroundColor = color;
-    toastsContainer.appendChild(toastInfo)
+    toastsContainer.appendChild(toastInfo);
 
-    setTimeout(() =>{
-      toastInfo.remove()
-    }, 2500)
+    setTimeout(() => {
+      toastInfo.remove();
+    }, 2500);
   }
 
   if ($currentCard.classList.contains("to-left")) {
-    const toastsContainer = document.querySelector(".toasts-container")
+    const toastsContainer = document.querySelector(".toasts-container");
 
     function createToast() {
       const toastInfo = document.createElement("p");
@@ -121,17 +121,16 @@ function release() {
 
       toastInfo.textContent = "Beware ! -2 points ...";
       toastInfo.style.backgroundColor = "red";
-      toastsContainer.appendChild(toastInfo)
+      toastsContainer.appendChild(toastInfo);
 
-      setTimeout(() =>{
-        toastInfo.remove()
-      }, 2500)
+      setTimeout(() => {
+        toastInfo.remove();
+      }, 2500);
     }
 
     createToast();
-  }
-  else if ($currentCard.classList.contains("to-right")) {
-    const toastsContainer = document.querySelector(".toasts-container")
+  } else if ($currentCard.classList.contains("to-right")) {
+    const toastsContainer = document.querySelector(".toasts-container");
 
     function createToast() {
       const toastInfo = document.createElement("p");
@@ -139,11 +138,11 @@ function release() {
 
       toastInfo.textContent = "Hurray ! +2 points !";
       toastInfo.style.backgroundColor = "green";
-      toastsContainer.appendChild(toastInfo)
+      toastsContainer.appendChild(toastInfo);
 
-      setTimeout(() =>{
-        toastInfo.remove()
-      }, 2500)
+      setTimeout(() => {
+        toastInfo.remove();
+      }, 2500);
     }
 
     createToast();

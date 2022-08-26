@@ -1,6 +1,3 @@
-$orange: #ff945a;
-$green: #b1da96;
-
 #cardList {
     position: absolute;
     left: 50%;
@@ -10,8 +7,6 @@ $green: #b1da96;
     height: 80vh;
     max-height: 600px;
     transform: translate(-50%, -50%);
-    background: #f6f6f5;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 .card {
@@ -22,8 +17,11 @@ $green: #b1da96;
     width: 100%;
     height: 100%;
     font-size: 18px;
+    padding: 16px;
     transform-origin: 50% 100%;
-    background-color: #248cb6;
+    background: #fff;
+    box-shadow: 0 3px 8px rgba(63, 63, 63, 0.25);
+    border-radius: 12px;
 
     &.reset {
         transition: transform 0.3s;
@@ -56,6 +54,53 @@ $green: #b1da96;
         height: 100%;
         cursor: grab;
     }
+
+    p {
+        margin-top: 16px;
+    }
+
+    b:not(:first-child) {
+        margin-left: 8px;
+    }
+}
+
+.card__image {
+    position: relative;
+    width: 100%;
+    padding-top: 85%;
+    border-radius: 12px;
+
+    svg {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.card__name {
+    font-size: 24px;
+}
+
+.card__face {
+    top: calc(50% - 85px);
+    filter: drop-shadow(9px 0 0 currentColor);
+}
+
+.card__eyes {
+    top: calc(50% - 30px);
+}
+
+.card__mouth {
+    top: calc(50% + 20px);
+}
+
+.card_ears {
+    top: calc(50% - 35px);
+}
+
+.card__clothes {
+    bottom: 0;
+    top: auto;
 }
 
 .card__choice {
@@ -94,11 +139,11 @@ $green: #b1da96;
     }
 
     &.-reject {
-        background: $orange;
+        background: #e35b5b;
     }
 
     &.-accept {
-        background: $green;
+        background: #8be895;
 
         &:after {
             transform: scaleY(-1);
