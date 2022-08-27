@@ -10,7 +10,6 @@
 }
 
 html {
-    font-size: 62.5%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: $primary-color-1;
     height: 100%;
@@ -21,4 +20,90 @@ body {
     background: $background-color;
     overflow: hidden;
     height: 100%;
+    font-size: 16px;
+}
+
+#gameWrapper {
+    &.-initial {
+        #ui,
+        #tutorial,
+        #cardList {
+            display: none;
+        }
+    }
+
+    &:not(.-initial) {
+        #home {
+            display: none;
+        }
+    }
+
+    &.-tutorial {
+        &.-step1 {
+            #ui,
+            #cardList,
+            #tutorial-2,
+            #tutorial-3 {
+                display: none;
+            }
+        }
+        &.-step2 {
+            #tutorial-1,
+            #tutorial-3 {
+                display: none;
+            }
+
+            &.-demo {
+                .card {
+                    &:last-child {
+                        animation: show-swipe-right 1.5s ease 1s infinite;
+                    }
+                }
+            }
+        }
+        &.-step3 {
+            #tutorial-1,
+            #tutorial-2 {
+                display: none;
+            }
+
+            &.-demo {
+                .card {
+                    &:last-child {
+                        animation: show-swipe-left 1.5s ease 1s infinite;
+                    }
+                }
+            }
+        }
+    }
+
+    &.-game {
+        #tutorial {
+            display: none;
+        }
+    }
+}
+
+@keyframes show-swipe-right {
+    0% {
+        transform: none;
+    }
+    30% {
+        transform: translate(80px) rotate(8deg);
+    }
+    50% {
+        transform: none;
+    }
+}
+
+@keyframes show-swipe-left {
+    0% {
+        transform: none;
+    }
+    30% {
+        transform: translate(-80px) rotate(-8deg);
+    }
+    50% {
+        transform: none;
+    }
 }

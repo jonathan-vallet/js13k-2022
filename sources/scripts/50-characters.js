@@ -8,7 +8,8 @@ function addCharacter() {
 
 // Generate a new character with all his infos
 function generateCharacter() {
-  let race = getRandomItem(raceList);
+  let isSpecificTutorialCard = currentTutorialStep && currentCardIndex === 1;
+  let race = isSpecificTutorialCard ? raceList[3] : getRandomItem(raceList);
   let character = {
     race: race.name,
     name: `${getRandomItem(firstNameList[race.name])} ${getRandomItem(
@@ -27,8 +28,13 @@ function generateCharacter() {
     clothesColor: getRandomItem(characterClothesColorList),
   };
 
-  // Adds error randomly
-  if (random() > 0.4) {
+  // Adds error randomly. For tutorial set second card on error only
+  if (isSpecificTutorialCard) {
+    // Change character race for human
+    character.error = {
+      race: raceList[0].name,
+    };
+  } else if (!currentTutorialStep && random() > 0.4) {
     // Change character race
     do {
       var newRace = getRandomItem(raceList);

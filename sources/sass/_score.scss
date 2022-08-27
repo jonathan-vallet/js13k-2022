@@ -1,0 +1,21 @@
+#ui {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+}
+
+#score {
+    display: inline-block;
+    &.-success {
+        animation: bump-score 250ms ease;
+    }
+}
+
+@keyframes bump-score {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(2);
+    }
+}

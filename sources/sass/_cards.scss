@@ -1,4 +1,4 @@
-#wrapper {
+#gameWrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -157,24 +157,4 @@
     &.-accept {
         background: rgba($color-green, 0.7);
     }
-}
-
-.toasts-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-}
-.toast {
-    font-size: 17px;
-    color: #f1f1f1;
-    padding: 10px;
-    margin: 10px 0;
-    min-width: 150px;
-    border-radius: 2px;
-}
-
-.timer-container {
-    display: flex;
-    justify-content: space-between;
-    font-size: 24px;
 }

@@ -42,6 +42,16 @@ function startCardDrag(card, e, type) {
     var x = e.pageX || e.touches[0].pageX;
     swipedDistance = x - startX;
 
+    // During tutorial, lock swipe in a direction depending of step (swipe left or right only)
+    if (currentTutorialStep) {
+      // Removes "demo" animation playing while not interacting
+      $gameWrapper.classList.remove("-demo");
+      swipedDistance = Math[currentTutorialStep === 1 ? "max" : "min"](
+        0,
+        swipedDistance
+      );
+    }
+
     if (swipedDistance) {
       moveCard();
     }
@@ -84,68 +94,30 @@ function moveCard() {
 }
 
 function release() {
+  let hasAccepted = true;
+  console.log(currentTutorialStep);
+  if (currentTutorialStep === 1) {
+    showTutorialStep3();
+  } else if (currentTutorialStep === 2) {
+    endTutorial();
+  }
+
   if (swipedDistance >= minDistancetoSwipe) {
     $currentCard.classList.add("to-right");
   } else if (swipedDistance <= -minDistancetoSwipe) {
+    hasAccepted = false;
     $currentCard.classList.add("to-left");
   }
 
   if (Math.abs(swipedDistance) >= minDistancetoSwipe) {
     $currentCard.classList.add("inactive");
+    // 4 characters created at start, set offset to get current card
+    updateScore(hasAccepted, characterList[currentCardIndex - 4]);
 
     setTimeout(function () {
       $currentCard.remove();
       addCharacter();
     }, 300);
-  }
-
-  function createToast({ color }) {
-    const toastInfo = document.createElement("p");
-    toastInfo.className = "toast";
-
-    toastInfo.textContent = `Cookie ${name} ${state}.`;
-    toastInfo.style.backgroundColor = color;
-    toastsContainer.appendChild(toastInfo);
-
-    setTimeout(() => {
-      toastInfo.remove();
-    }, 2500);
-  }
-
-  if ($currentCard.classList.contains("to-left")) {
-    const toastsContainer = document.querySelector(".toasts-container");
-
-    function createToast() {
-      const toastInfo = document.createElement("p");
-      toastInfo.className = "toast";
-
-      toastInfo.textContent = "Beware ! -2 points ...";
-      toastInfo.style.backgroundColor = "red";
-      toastsContainer.appendChild(toastInfo);
-
-      setTimeout(() => {
-        toastInfo.remove();
-      }, 2500);
-    }
-
-    createToast();
-  } else if ($currentCard.classList.contains("to-right")) {
-    const toastsContainer = document.querySelector(".toasts-container");
-
-    function createToast() {
-      const toastInfo = document.createElement("p");
-      toastInfo.className = "toast";
-
-      toastInfo.textContent = "Hurray ! +2 points !";
-      toastInfo.style.backgroundColor = "green";
-      toastsContainer.appendChild(toastInfo);
-
-      setTimeout(() => {
-        toastInfo.remove();
-      }, 2500);
-    }
-
-    createToast();
   }
 
   if (Math.abs(swipedDistance) < minDistancetoSwipe) {

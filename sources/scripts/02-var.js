@@ -2,8 +2,13 @@
 let characterList = [];
 let currentCardIndex = 0;
 let currentPoints = 0;
+let score = 0;
+let currentTutorialStep = 0;
 
+const $gameWrapper = $("gameWrapper");
 const $cardList = $("cardList");
+const $score = $("score");
+const $startButton = $("startButton");
 
 const raceList = [
   {

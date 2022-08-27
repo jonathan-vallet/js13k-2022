@@ -6,14 +6,36 @@
     <link rel="stylesheet" href="css/style.css" inline />
   </head>
   <body>
-    <div id="wrapper">
-      <div class="timer-container">
-        <p>Score <b id="score">00</b></p>
+    <div id="gameWrapper" class="-initial">
+      <div id="ui">
+        <p>Score <b id="score">0</b></p>
         <p>Timer <b id="time">05:00</b></p>
+      </div>
+      <div id="home">
+        <button id="startButton">Start</button>
+      </div>
+      <div id="tutorial">
+        <div id="tutorial-1">
+          Welcome dear minion,<br />
+          Here you are a new guardian of the gates of death.<br />
+          There is no shortage of work here, the souls of the deceased are
+          constantly pouring in!<br />
+          Above all, only accept valid profiles, some are ready to trick us to
+          be accepted, it's up to you to refuse them<br />
+          <button id="tutorial1Button">Continue</button>
+        </div>
+
+        <div id="tutorial-2">
+          swipe à droite pour accepter une personne<br />
+        </div>
+
+        <divp id="tutorial-3">
+          Un humain vert comme un orc?! Impossible!<br />
+          swipe à gauche pour le refuser
+        </p>
       </div>
       <div id="cardList"></div>
     </div>
-    <div class="toasts-container"></div>
     <script src="scripts/game.js" inline></script>
   </body>
 </html>
