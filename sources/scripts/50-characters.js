@@ -18,7 +18,7 @@ function generateCharacter() {
     deathCause: getRandomItem(deathCauseList),
     height: getRandomGaussian(race.minHeight, race.maxHeight),
     weight: getRandomGaussian(race.minWeight, race.maxWeight),
-    age: getRandomGaussian(16, race.maxAge),
+    age: getRandomGaussian(42, race.maxAge),
     // Character display customization
     backgroundColor: getRandomItem(cardBackgroundColorList),
     clothesColor: getRandomItem(characterClothesColorList),
@@ -32,12 +32,14 @@ function generateCharacter() {
     character[part + "Col"] =
       colorList[part][getRandomNumber(0, colorList[part].length - 1)];
   });
+
   // Set specific changes for races
   if (character.race == "orc") {
     character.faceCol = getRandomItem(characterOrcFaceColorList);
   }
-  character["earCol"] = character["faceCol"];
-  character["eyebrowCol"] = character["hairCol"];
+  if (character.race == "elf") {
+    character.ear = elfEars;
+  }
 
   // Adds error randomly. For tutorial set second card on error only
   if (isSpecificTutorialCard) {
@@ -45,17 +47,86 @@ function generateCharacter() {
     character.error = {
       race: raceList[0].name,
     };
-  } else if (!currentTutorialStep && random() > 0.4) {
-    // Change character race
-    do {
-      var newRace = getRandomItem(raceList);
-    } while (newRace.name === character.race.name);
+  } else if (!currentTutorialStep) {
+    // No error during first card of tutorial
+    addRandomError(character);
+  }
+
+  // Sets ear color like skin color, after error is set, has it can change
+  character["earCol"] = character["faceCol"];
+  character["eyebrowCol"] = character["hairCol"];
+
+  return character;
+}
+
+// Adds some errors to character randomly
+function addRandomError(character) {
+  let error;
+
+  // Change character race
+  if (random() < 0.3) {
+    // Switch elf/orc to human/dwarf or opposite, to avoid confusions
+    var newRace =
+      ["elf", "orc"].indexOf(character.race) >= 0
+        ? raceList[getRandomNumber(0, 1)]
+        : raceList[getRandomNumber(2, 3)];
+
     character.error = {
       race: newRace.name,
+      m: `a ${character.race} looking like ${newRace.name}`,
     };
   }
 
-  return character;
+  // Change height for elf/dwarfs
+  if (character.race == "dwarf" && random() < 0.2) {
+    error = {
+      height: getRandomGaussian(1.8, 2.4),
+      m: `a dwarf taller than 1.5m`,
+    };
+  }
+  if (character.race == "elf") {
+    if (random() < 0.2) {
+      error = {
+        height: getRandomGaussian(1, 1.4),
+        m: `an elf smaller than 1.9m`,
+      };
+    } else if (random() < 0.2) {
+      // Change elf ears
+      error = {
+        ear: getRandomItem(customizationList["ear"]),
+        m: `an elf without pointy ears`,
+      };
+    }
+  } else {
+    // Set elf ears to other races
+    if (random() < 0.2) {
+      error = {
+        ear: elfEars,
+        m: `a ${character.race} with pointy ears`,
+      };
+    }
+    // Change age
+    if (random() < 0.1) {
+      error = {
+        age: getRandomNumber(160, 230),
+        m: `a ${character.race} older than 150 years`,
+      };
+    }
+
+    // Change skin color for orc/not orc
+    if (random() < 0.1) {
+      let skinColor = getRandomItem(
+        character.race == "orc" ? colorList.face : characterOrcFaceColorList
+      );
+      error = {
+        faceCol: skinColor,
+        earCol: skinColor,
+        m: `a ${character.race} with this skin color`,
+      };
+    }
+  }
+
+  character.error = error;
 }
 
 function drawCharacterFace(character) {
@@ -78,15 +149,17 @@ function drawCharacterFace(character) {
           ? `#${character[part + "Col"]}`
           : "rgba(0, 0 ,0, 0.1)";
       let pathProperties = { fill: color };
-      if (character[part][pathIndex].startsWith("M")) {
-        pathProperties.d = character[part][pathIndex];
-      } else {
-        pathProperties = Object.assign(
-          pathProperties,
-          JSON.parse(character[part][pathIndex])
-        );
+      if (character[part][pathIndex]) {
+        if (character[part][pathIndex].startsWith("M")) {
+          pathProperties.d = character[part][pathIndex];
+        } else {
+          pathProperties = Object.assign(
+            pathProperties,
+            JSON.parse(character[part][pathIndex])
+          );
+        }
+        characterFace += createSvg(326, 305, [pathProperties]);
       }
-      characterFace += createSvg(326, 305, [pathProperties]);
     }
   });
 
