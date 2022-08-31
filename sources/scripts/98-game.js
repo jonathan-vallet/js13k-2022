@@ -1,11 +1,12 @@
 $startButton.addEventListener("click", initGame);
 
 function initGame() {
-  // TODO: show tutorial only once
   $gameWrapper.classList.remove("-initial");
-  if (true) {
+  const isTutoWatched = getFromLS('tutoWatched');
+  if (isTutoWatched == null || isTutoWatched == false) {
     showTutorial();
-  } else {
+    var tutoWatched = setToLS('tutoWatched', true);
+  } else if (isTutoWatched == true) {
     startNewGame();
   }
 }
