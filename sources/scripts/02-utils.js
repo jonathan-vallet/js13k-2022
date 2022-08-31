@@ -20,7 +20,7 @@ function getRandomNumber(min, max) {
 
 // Get a random int in a range
 function getRandomGaussian(min, max) {
-  return ~~(gaussianRandom() * (max - min + 1)) + min;
+  return ~~(gaussianRandom() * (max - min)) + min;
 }
 
 function gaussianRandom() {
@@ -42,24 +42,44 @@ function gaussianRandom() {
 }
 
 function startTimer(duration, display) {
-  var timer = duration, minutes, seconds;
+  var timer = duration,
+    minutes,
+    seconds;
   setInterval(function () {
-      minutes = parseInt(timer / 60, 10);
-      seconds = parseInt(timer % 60, 10);
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
 
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
 
-      display.textContent = minutes + ":" + seconds;
+    display.textContent = minutes + ":" + seconds;
 
-      if (--timer < 0) {
-          timer = duration;
-      }
+    if (--timer < 0) {
+      timer = duration;
+    }
   }, 1000);
 }
 
 window.onload = function () {
   var fiveMinutes = 60 * 5,
-      display = document.querySelector('#time');
+    display = document.querySelector("#time");
   startTimer(fiveMinutes, display);
 };
+
+function createSvg(width, height, pathList, properties = {}) {
+  let props = "";
+  Object.entries(properties).forEach(([property, value]) => {
+    props += ` ${property}="${value}"`;
+  });
+  return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" ${props}>${pathList
+    .map(createSvgPath)
+    .join("")}</svg>`;
+}
+
+function createSvgPath(properties) {
+  let props = "";
+  Object.entries(properties).forEach(([property, value]) => {
+    props += ` ${property}="${value}"`;
+  });
+  return `<${props.includes("cx=") ? "circle" : "path"} ${props}/>`;
+}

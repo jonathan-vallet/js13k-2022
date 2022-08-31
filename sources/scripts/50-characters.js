@@ -21,12 +21,23 @@ function generateCharacter() {
     age: getRandomGaussian(16, race.maxAge),
     // Character display customization
     backgroundColor: getRandomItem(cardBackgroundColorList),
-    faceType: getRandomItem(characterFaceTypeList),
-    faceColor: getRandomItem(
-      race.name === "orc" ? characterOrcFaceColorList : characterFaceColorList
-    ),
     clothesColor: getRandomItem(characterClothesColorList),
   };
+  // Set a random element for every part
+  Object.keys(customizationList).forEach((part) => {
+    character[part] =
+      customizationList[part][
+        getRandomNumber(0, customizationList[part].length - 1)
+      ];
+    character[part + "Col"] =
+      colorList[part][getRandomNumber(0, colorList[part].length - 1)];
+  });
+  // Set specific changes for races
+  if (character.race == "orc") {
+    character.faceCol = getRandomItem(characterOrcFaceColorList);
+  }
+  character["earCol"] = character["faceCol"];
+  character["eyebrowCol"] = character["hairCol"];
 
   // Adds error randomly. For tutorial set second card on error only
   if (isSpecificTutorialCard) {
@@ -48,47 +59,44 @@ function generateCharacter() {
 }
 
 function drawCharacterFace(character) {
+  // Clothes, always same pattern
+  // TODO: surement simplifier le "326, 305" redondant
   let characterFace = `
-  ${drawSvg(
-    "card__clothes",
-    "M.646 84.125c0-45.928 25.936-83.16 57.93-83.16 31.995 0 57.932 37.232 57.932 83.16V122H.646V84.125Z",
-    character.clothesColor,
-    117,
-    122
-  )}
-  ${drawSvg("card__face", character.faceType, character.faceColor, 117, 171)}
-<svg class="card__eyes" width="76" height="29">
- <path d="M28.8 14.43A14.4 14.4 0 1 1 0 14.43h28.8Z" fill="#fff"/>
- <circle cx="14" cy="22" r="2.9" fill="#111"/>
- <path d="M75.7 14.4a14.4 14.4 0 1 1-28.8 0h28.8Z" fill="#fff"/>
- <circle cx="61" cy="22" r="2.9" fill="#111"/>
-</svg>
-<svg class="card__mouth" width="45" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M42.806 12.762C34.675 26.945 13.995 28.296 5.763 22.813-2.469 17.331.001 5.452 8.644 5.452c18.11 0 18.521.824 26.341-3.745 4.528-2.645 13.583 1.004 7.82 11.055Z" fill="#B53B3B"/>
-  <mask id="a" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="45" height="26">
-    <path d="M42.806 12.762C34.675 26.945 13.995 28.296 5.763 22.813-2.469 17.331.001 5.452 8.644 5.452c18.11 0 18.521.824 26.341-3.745 4.528-2.645 13.583 1.004 7.82 11.055Z" fill="#F6CCB1"/>
-  </mask>
-  <g mask="url(#a)">
-    <path d="M24.09 18.581c-3.499.391-12.733-3.736-15.257 6.865 9.027 6.43 25.074 1.371 31.97-1.962-4.346-12.144-13.214-5.294-16.713-4.903Z" fill="#E04545"/>
-    <path d="M7.41 11.585C5.372 11.284 5.35 4.588 5.35 3.354l32.104-4.528c1.646 2.332 2.47 4.116 1.235 6.586-1.105 2.208-2.058 2.057-3.293 2.88-.474.034-2.881-3.704-2.881-3.704s-.34 4.52-.823 4.528c-2.47 1.235-22.522 2.73-24.284 2.47Z" fill="#fff"/>
-  </g>
-</svg>
-`;
-  if (["elf", "orc"].indexOf(character.race) >= 0) {
-    characterFace += drawSvg(
-      "card_ears",
-      "M4.718.167c-6.508-2.356.042 20.722 5.343 36.947 3.004 9.194 11.674 15.216 21.346 15.216V31.65S14.66 3.767 4.718.168ZM168.4.167c6.508-2.356-.042 20.722-5.343 36.947-3.004 9.194-11.673 15.216-21.345 15.216V31.65S158.458 3.767 168.4.168Z",
-      character.faceColor,
-      172,
-      54
-    );
-  }
+  ${createSvg(326, 305, [
+    {
+      d: "M116.7 214.8a61.7 61.7 0 0 1 46-19.3c18.8 0 35.4 7.6 46 19.3a40.3 40.3 0 0 1 34.6 39.7V305H82v-50.5a40.3 40.3 0 0 1 34.7-39.7Z",
+      fill: `#${character.clothesColor}`,
+    },
+  ])}`;
+
+  // Draws every body parts, loop on all parts typa available
+  Object.keys(customizationList).forEach((part) => {
+    // Draw every path of the part
+    for (var pathIndex in character[part]) {
+      let color =
+        pathIndex < 1 || part == "eye"
+          ? `#${character[part + "Col"]}`
+          : "rgba(0, 0 ,0, 0.1)";
+      let pathProperties = { fill: color };
+      if (character[part][pathIndex].startsWith("M")) {
+        pathProperties.d = character[part][pathIndex];
+      } else {
+        pathProperties = Object.assign(
+          pathProperties,
+          JSON.parse(character[part][pathIndex])
+        );
+      }
+      characterFace += createSvg(326, 305, [pathProperties]);
+    }
+  });
+
+  characterFace += `
+  <svg width="326" height="305" viewBox="0 0 326 305" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M183.087 176.888C174.956 191.071 154.276 192.421 146.044 186.939C137.813 181.456 140.282 169.577 148.926 169.577C167.035 169.577 167.447 170.402 175.267 165.833C179.794 163.188 188.849 166.836 183.087 176.888Z" fill="#B53B3B"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M178.332 182.725C170.007 190.136 157.197 191.324 149.386 188.567C151.607 181.316 157.386 182.025 161.438 182.523C162.599 182.666 163.618 182.791 164.371 182.707C165.087 182.626 166.029 182.275 167.111 181.872C170.354 180.663 174.857 178.985 178.332 182.725Z" fill="#E04545"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M145.721 170.204C145.885 172.559 146.354 175.513 147.69 175.711C149.452 175.972 169.504 174.476 171.974 173.241C172.458 173.233 172.797 168.714 172.797 168.714C172.797 168.714 175.204 172.452 175.678 172.418C176.009 172.197 176.32 172.047 176.619 171.902C177.435 171.506 178.162 171.154 178.971 169.537C179.82 167.839 179.696 166.465 179 165.015C177.673 164.931 176.342 165.204 175.266 165.833C168.623 169.714 167.326 169.703 155.986 169.612C153.976 169.596 151.651 169.577 148.925 169.577C147.736 169.577 146.664 169.802 145.721 170.204Z" fill="white"/>
+  </svg>
+  `;
 
   return characterFace;
-}
-
-function drawSvg(className, path, fill, width, height) {
-  return `<svg class="${className}" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
-<path d="${path}" fill="#${fill}"/>
-</svg>`;
 }

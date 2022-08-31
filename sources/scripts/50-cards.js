@@ -9,9 +9,13 @@ function generateCharacterCard(character) {
   let $card = createElement("div");
   $card.classList.add("card");
   $card.innerHTML = `
-<div class="card__image" style="background: #${character.backgroundColor}">
+<div class="card__imageWrapper" style="background: #${
+    character.backgroundColor
+  }"><div class="card__image" style="transform:translateY(${
+    (2.5 - character.height) * 50
+  }px) scaleX(${1 + (character.weight - 70) / 200})">
 ${drawCharacterFace(character)}
- </div>
+</div></div>
 <div class="card__content">
 <b class="card__race">🫀 ${character.race}</b>
  <p class="card__name">${character.name}</p>
@@ -95,7 +99,6 @@ function moveCard() {
 
 function release() {
   let hasAccepted = true;
-  console.log(currentTutorialStep);
   if (currentTutorialStep === 1) {
     showTutorialStep3();
   } else if (currentTutorialStep === 2) {

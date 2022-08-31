@@ -23,3 +23,5 @@ function startNewGame() {
   addCharacter();
   addCharacter();
 }
+
+createBackground();
