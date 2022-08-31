@@ -115,18 +115,6 @@ const firstNameList = {
     "Podagog",
     "Jugag",
   ],
-  troll: [
-    "Ugoki",
-    "Rashi",
-    "Seshi",
-    "Malak",
-    "Paikei",
-    "Tedar",
-    "Zulgeteb",
-    "Kaijin",
-    "Seji",
-    "Hakalai",
-  ],
 };
 
 const lastNameList = {
@@ -177,17 +165,5 @@ const lastNameList = {
     "Zahgigoth",
     "Podagog",
     "Quimghig",
-  ],
-  troll: [
-    "Xia",
-    "Yesha",
-    "Katanja",
-    "Renjai",
-    "Shamra",
-    "Kanjin",
-    "Anji",
-    "Ziataja",
-    "Ajia",
-    "Esha",
   ],
 };
