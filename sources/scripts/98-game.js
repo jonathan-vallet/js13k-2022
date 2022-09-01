@@ -2,8 +2,8 @@ $startButton.addEventListener("click", initGame);
 
 function initGame() {
   $gameWrapper.classList.remove("-initial");
-  const isTutoWatched = getFromLS('tutoWatched');
-  if (isTutoWatched == null || isTutoWatched == false) {
+  // const isTutoWatched = getFromLS('tutoWatched');
+  if (true) {
     showTutorial();
     var tutoWatched = setToLS('tutoWatched', true);
   } else if (isTutoWatched == true) {
