@@ -4,11 +4,13 @@ let currentCardIndex = 0;
 let currentPoints = 0;
 let score = 0;
 let currentTutorialStep = 0;
+let errorMessageTimeout;
 
-const $gameWrapper = $("gameWrapper");
-const $cardList = $("cardList");
-const $score = $("score");
-const $startButton = $("startButton");
+let $gameWrapper = $("gameWrapper");
+let $cardList = $("cardList");
+let $score = $("score");
+let $startButton = $("startButton");
+let $errorMessage = $("errorMessage");
 
 const raceList = [
   {
@@ -20,20 +22,20 @@ const raceList = [
     maxAge: 90,
   },
   {
-    name: "elf",
-    minHeight: 1.9,
-    maxHeight: 2.5,
-    minWeight: 55,
-    maxWeight: 80,
-    maxAge: 230,
-  },
-  {
     name: "dwarf",
     minHeight: 1,
     maxHeight: 1.4,
     minWeight: 60,
     maxWeight: 100,
     maxAge: 80,
+  },
+  {
+    name: "elf",
+    minHeight: 1.9,
+    maxHeight: 2.5,
+    minWeight: 55,
+    maxWeight: 80,
+    maxAge: 230,
   },
   {
     name: "orc",
@@ -47,8 +49,11 @@ const raceList = [
 
 const deathCauseList = [
   "starvation",
+  "snu snu",
+  "arrow in knee",
+  "death from laugher",
+  "eaten by blob",
   "old age",
-  "cancer",
   "silly accident",
   "natural disaster",
   "poison",

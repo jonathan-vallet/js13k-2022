@@ -4,6 +4,13 @@ function updateScore(hasAccepted, currentCard) {
     (!hasAccepted && !currentCard.error)
   ) {
     --score;
+    displayErrorMessage(
+      currentCard.error
+        ? random() > 0.5
+          ? `🤨️ ${currentCard.error.m}, really?`
+          : `☠️️ Have you ever seen ${currentCard.error.m}?`
+        : `🤨️ why did you reject him?`
+    );
   } else {
     ++score;
   }
@@ -12,4 +19,13 @@ function updateScore(hasAccepted, currentCard) {
   $score.classList.remove("-success");
   $score.offsetWidth;
   $score.classList.add("-success");
+}
+
+function displayErrorMessage(message) {
+  clearTimeout(errorMessageTimeout);
+  $errorMessage.innerHTML = message;
+  $errorMessage.classList.remove("-hidden");
+  errorMessageTimeout = setTimeout(() => {
+    $errorMessage.classList.add("-hidden");
+  }, 3000);
 }

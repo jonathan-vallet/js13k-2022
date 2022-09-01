@@ -117,7 +117,7 @@ function release() {
     // 4 characters created at start, set offset to get current card
     updateScore(hasAccepted, characterList[currentCardIndex - 4]);
 
-    setTimeout(function () {
+    setTimeout(() => {
       $currentCard.remove();
       addCharacter();
     }, 300);
@@ -127,7 +127,7 @@ function release() {
     $currentCard.classList.add("reset");
   }
 
-  setTimeout(function () {
+  setTimeout(() => {
     $currentCard.setAttribute("style", "");
     $currentCard.classList.remove("reset");
     $currentCard.querySelector(".-reject").style.opacity = 0;
