@@ -53,6 +53,7 @@ function generateCharacter() {
   // Sets ear color like skin color, after error is set, has it can change
   character["earCol"] = character["faceCol"];
   character["eyebrowCol"] = character["hairCol"];
+  character["beardCol"] = character["hairCol"];
 
   return character;
 }
@@ -145,7 +146,9 @@ function drawCharacterFace(character) {
     // Draw every path of the part
     for (var pathIndex in character[part]) {
       let color =
-        pathIndex < 1 || part == "eye"
+        part == "mouth"
+          ? "transparent"
+          : pathIndex < 1 || part == "eye"
           ? `#${character[part + "Col"]}`
           : "rgba(0, 0 ,0, 0.1)";
       let pathProperties = { fill: color };
@@ -162,14 +165,6 @@ function drawCharacterFace(character) {
       }
     }
   });
-
-  characterFace += `
-  <svg width="326" height="305" viewBox="0 0 326 305" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M183.087 176.888C174.956 191.071 154.276 192.421 146.044 186.939C137.813 181.456 140.282 169.577 148.926 169.577C167.035 169.577 167.447 170.402 175.267 165.833C179.794 163.188 188.849 166.836 183.087 176.888Z" fill="#B53B3B"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M178.332 182.725C170.007 190.136 157.197 191.324 149.386 188.567C151.607 181.316 157.386 182.025 161.438 182.523C162.599 182.666 163.618 182.791 164.371 182.707C165.087 182.626 166.029 182.275 167.111 181.872C170.354 180.663 174.857 178.985 178.332 182.725Z" fill="#E04545"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M145.721 170.204C145.885 172.559 146.354 175.513 147.69 175.711C149.452 175.972 169.504 174.476 171.974 173.241C172.458 173.233 172.797 168.714 172.797 168.714C172.797 168.714 175.204 172.452 175.678 172.418C176.009 172.197 176.32 172.047 176.619 171.902C177.435 171.506 178.162 171.154 178.971 169.537C179.82 167.839 179.696 166.465 179 165.015C177.673 164.931 176.342 165.204 175.266 165.833C168.623 169.714 167.326 169.703 155.986 169.612C153.976 169.596 151.651 169.577 148.925 169.577C147.736 169.577 146.664 169.802 145.721 170.204Z" fill="white"/>
-  </svg>
-  `;
 
   return characterFace;
 }
