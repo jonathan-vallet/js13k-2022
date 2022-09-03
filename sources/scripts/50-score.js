@@ -4,13 +4,16 @@ function updateScore(hasAccepted, currentCard) {
     (!hasAccepted && !currentCard.error)
   ) {
     --score;
-    displayErrorMessage(
-      currentCard.error
-        ? random() > 0.5
-          ? `🤨️ ${currentCard.error.m}, really?`
-          : `☠️️ Have you ever seen ${currentCard.error.m}?`
-        : `🤨️ why did you reject him?`
-    );
+    let message = currentCard.error
+      ? random() > 0.5
+        ? `🤨️ ${currentCard.error.m}, really?`
+        : `☠️️ Have you ever seen ${currentCard.error.m}?`
+      : `🤨️ why did you reject him?`;
+    message += `<div class="card__imageWrapper"><div class="card__image">${drawCharacterFace(
+      currentCard
+    )}</div></div>`;
+
+    displayErrorMessage(message);
   } else {
     ++score;
   }
