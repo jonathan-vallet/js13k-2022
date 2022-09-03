@@ -33,32 +33,35 @@ let raceList = [
   },
 ];
 
-let cardBackgroundColorList = ["F5ADD4", "6ADBD4"];
-let characterOrcFaceColorList = ["50D174"];
-
-let characterClothesColorList = [
-  "E04545",
-  "8C8A8A",
-  "6CBB82",
-  "4953AA",
-  "E0C04D",
-];
-
 // Elfs ears
 let elfEars = [
   "M222 168v-25.6c5.4-8.2 16.2-23.6 23.4-26.2 6.5-2.4 0 20.7-5.3 37A22.2 22.2 0 0 1 222 168ZM105.1 142.4v25.7a22.2 22.2 0 0 1-18-15c-5.3-16.2-11.9-39.3-5.4-37 7.2 2.7 18 18 23.4 26.3Z",
 ];
 
 let colorList = {
-  face: ["FFF0CB", "FFDECB", "E9C0AA", "C8946F", "8E5831"],
-  hair: ["EB7A7A", "241c11", "debe99"],
+  face: ["F5F2E7", "FDE9DD", "EEE3BB", "F9CA9F", "B9885B", "4F3319"],
+  hair: ["D7D8D9", "DDAE62", "A82E2D", "923F21", "0C602D", "4D274D", "212226"],
   eye: ["2e536f", "634e34", "1c7847"],
+  clothes: [
+    "DDAE62",
+    "48848E",
+    "A82E2D",
+    "#923F21",
+    "0C602D",
+    "4D274D",
+    "212226",
+  ],
+  background: ["FBD495", "91CFDA", "D06E6D", "BC6B4E", "2F9658", "874B87"],
 };
 colorList["ear"] = colorList["face"];
 colorList["eyebrow"] = colorList["hair"];
+let characterOrcFaceColorList = ["AAA997", "98AC5E", "545119", "354934"];
+let characterElfFaceColorList = ["E1E6F3", "8389C5", "E9E4F3", "B093CE"];
 
 // Face path list
 let customizationList = {
+  background: [],
+  clothes: [],
   face: [
     // Round face
     [

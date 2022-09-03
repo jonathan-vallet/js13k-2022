@@ -10,7 +10,7 @@ function generateCharacterCard(character) {
   $card.classList.add("card");
   $card.innerHTML = `
 <div class="card__imageWrapper" style="background: #${
-    character.backgroundColor
+    character.backgroundCol
   }"><div class="card__image" style="transform:translateY(${
     (2.5 - character.height) * 50
   }px) scaleX(${1 + (character.weight - 70) / 200})">

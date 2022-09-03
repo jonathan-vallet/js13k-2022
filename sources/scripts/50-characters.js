@@ -19,9 +19,6 @@ function generateCharacter() {
     height: getRandomGaussian(race.minHeight, race.maxHeight),
     weight: getRandomGaussian(race.minWeight, race.maxWeight),
     age: getRandomGaussian(42, race.maxAge),
-    // Character display customization
-    backgroundColor: getRandomItem(cardBackgroundColorList),
-    clothesColor: getRandomItem(characterClothesColorList),
   };
   // Set a random element for every part
   Object.keys(customizationList).forEach((part) => {
@@ -38,6 +35,7 @@ function generateCharacter() {
     character.faceCol = getRandomItem(characterOrcFaceColorList);
   }
   if (character.race == "elf") {
+    character.faceCol = getRandomItem(characterElfFaceColorList);
     character.ear = elfEars;
   }
 
@@ -116,7 +114,9 @@ function addRandomError(character) {
     // Change skin color for orc/not orc
     if (random() < 0.1) {
       let skinColor = getRandomItem(
-        character.race == "orc" ? colorList.face : characterOrcFaceColorList
+        ["orc", "elf"].indexOf(character.race) >= 0
+          ? colorList.face
+          : characterOrcFaceColorList.concat(characterElfFaceColorList)
       );
       error = {
         faceCol: skinColor,
@@ -136,7 +136,7 @@ function drawCharacterFace(character) {
   ${createSvg(326, 305, [
     {
       d: "M116.7 214.8a61.7 61.7 0 0 1 46-19.3c18.8 0 35.4 7.6 46 19.3a40.3 40.3 0 0 1 34.6 39.7V305H82v-50.5a40.3 40.3 0 0 1 34.7-39.7Z",
-      fill: `#${character.clothesColor}`,
+      fill: `#${character.clothesCol}`,
     },
   ])}`;
 
