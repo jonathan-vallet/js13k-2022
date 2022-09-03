@@ -102,7 +102,7 @@ function release() {
   if (currentTutorialStep === 1) {
     showTutorialStep3();
   } else if (currentTutorialStep === 2) {
-    endTutorial();
+    showTutorialStep4();
   }
 
   if (swipedDistance >= minDistancetoSwipe) {

@@ -1,53 +1,67 @@
-button {
-    padding: 16px 106px;
-    border: none;
-    background-color: $color-green-dark;
-
-    font-family: 'Tahoma';
-    font-style: normal;
-    color: $color-white;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 130%;
-
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-}
-
-#startButton {
-    position: absolute;
-    top: 60%;
-    left: calc(50% - 211px);
-}
-
-#welcome {
-    font-family: 'Tahoma';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 130%;
-
-    color: #4D274D;
+#tutorial {
+    font-family: Tahoma, sans-serif;
 }
 
 #tutorial-1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 24px;
     text-align: center;
-
     margin: 10% auto;
     width: 100%;
     max-width: 600px;
-    background: rgba(255, 249, 244, 0.9);
-    box-shadow: 0px 4px 0px #DADADA;
+    background: #fff;
+    box-shadow: 0 4px 0 #ddd;
     border-radius: 12px;
-    overflow: hidden;
-    position: relative;
     color: #212226;
     padding-top: 10px;
+    font-size: 24px;
+
+    span {
+        display: none;
+    }
+
+    &[data-step="1"] {
+        > :first-child {
+            display: block;
+        }
+    }
+    &[data-step="2"] {
+        > :nth-child(2) {
+            display: block;
+        }
+    }
+    &[data-step="3"] {
+        > :last-child {
+            display: block;
+        }
+    }
 
     button {
-        margin: 16px 0px;
+        margin-top: 24px;
     }
+
+    b {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 40px;
+        color: #4d274d;
+    }
+}
+
+#tutorial-2,
+#tutorial-3 {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 30px;
+}
+
+i {
+    font-style: normal;
+}
+
+#tutorial-4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 80vh;
 }

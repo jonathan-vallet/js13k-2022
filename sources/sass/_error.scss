@@ -10,3 +10,11 @@
     background: rgba(224, 69, 69, 0.7);
     z-index: 9;
 }
+
+.good {
+    color: $success-color;
+}
+
+.wrong {
+    color: $error-color;
+}

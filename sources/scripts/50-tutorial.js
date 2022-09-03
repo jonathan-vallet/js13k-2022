@@ -1,12 +1,20 @@
 function showTutorial() {
   ++currentTutorialStep;
-  $gameWrapper.classList.add("-tutorial", "-step1");
+  $gameWrapper.dataset.screen = 1;
+  $gameWrapper.dataset.tutorial = 1;
   $("tutorial1Button").addEventListener("click", showTutorialStep2);
+  $("tutorialEndButton").addEventListener("click", endTutorial);
+
+  [...$$$(".next")].forEach(($e) =>
+    $e.addEventListener("click", (e) => {
+      $("tutorial-1").dataset.step++;
+    })
+  );
 }
 
 function showTutorialStep2() {
-  $gameWrapper.classList.remove("-step1");
-  $gameWrapper.classList.add("-step2", "-demo");
+  $gameWrapper.dataset.tutorial = 2;
+  $gameWrapper.classList.add("-demo");
   addCharacter();
   addCharacter();
   addCharacter();
@@ -14,15 +22,17 @@ function showTutorialStep2() {
 }
 
 function showTutorialStep3() {
+  $gameWrapper.dataset.tutorial = 3;
+  $gameWrapper.classList.add("-demo");
   ++currentTutorialStep;
-  $gameWrapper.classList.remove("-step2");
-  $gameWrapper.classList.add("-step3", "-demo");
+}
+
+function showTutorialStep4() {
+  $gameWrapper.dataset.tutorial = 4;
 }
 
 function endTutorial() {
+  $gameWrapper.dataset.screen = 2;
   currentTutorialStep = 0;
-  setTimeout(() => {
-    $gameWrapper.classList.remove("-tutorial", "-step3");
-    startNewGame();
-  }, 300);
+  startNewGame();
 }

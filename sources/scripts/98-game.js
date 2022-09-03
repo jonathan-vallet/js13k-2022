@@ -2,21 +2,22 @@ $startButton.addEventListener("click", initGame);
 
 function initGame() {
   $gameWrapper.classList.remove("-initial");
-  const isTutoWatched = getFromLS('tutoWatched');
+  let isTutoWatched = getFromLS("tutoWatched");
   if (isTutoWatched == null || isTutoWatched == false) {
     showTutorial();
-    var tutoWatched = setToLS('tutoWatched', true);
+    var tutoWatched = setToLS("tutoWatched", true);
   } else if (isTutoWatched == true) {
     startNewGame();
   }
 }
 
 function startNewGame() {
-  $gameWrapper.classList.add("-game");
+  $gameWrapper.dataset.screen = 2;
   characterList = [];
   $cardList.innerHTML = "";
   currentCardIndex = 0;
   score = 0;
+  updateScoreDisplay();
 
   // Adds characters at start to see "deck"
   addCharacter();

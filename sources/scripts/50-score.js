@@ -15,6 +15,10 @@ function updateScore(hasAccepted, currentCard) {
     ++score;
   }
   score = Math.max(0, score);
+  updateScoreDisplay();
+}
+
+function updateScoreDisplay() {
   $score.innerHTML = score;
   $score.classList.remove("-success");
   $score.offsetWidth;
