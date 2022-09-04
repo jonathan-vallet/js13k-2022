@@ -1,14 +1,7 @@
 $startButton.addEventListener("click", initGame);
 
 function initGame() {
-  $gameWrapper.classList.remove("-initial");
-  let isTutoWatched = getFromLS("tutoWatched");
-  if (isTutoWatched == null || isTutoWatched == false) {
-    showTutorial();
-    var tutoWatched = setToLS("tutoWatched", true);
-  } else if (isTutoWatched == true) {
-    startNewGame();
-  }
+  getFromLS("tutoWatched") ? startNewGame() : showTutorial();
 }
 
 function startNewGame() {
@@ -17,6 +10,10 @@ function startNewGame() {
   $cardList.innerHTML = "";
   currentCardIndex = 0;
   score = 0;
+  combo = 0;
+  scoreMultiplier = 1;
+  gameTimer = 30 * 1000;
+
   updateScoreDisplay();
 
   // Adds characters at start to see "deck"
@@ -24,6 +21,12 @@ function startNewGame() {
   addCharacter();
   addCharacter();
   addCharacter();
+
+  startTimer();
+}
+
+function endGame() {
+  console.log("end game!");
 }
 
 createBackground();

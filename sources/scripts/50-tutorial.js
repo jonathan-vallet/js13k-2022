@@ -28,11 +28,15 @@ function showTutorialStep3() {
 }
 
 function showTutorialStep4() {
-  $gameWrapper.dataset.tutorial = 4;
+  // Wait swipe animation to end
+  setTimeout(() => {
+    $gameWrapper.dataset.tutorial = 4;
+  }, 300);
 }
 
 function endTutorial() {
   $gameWrapper.dataset.screen = 2;
   currentTutorialStep = 0;
+  setToLS("tutoWatched", true);
   startNewGame();
 }

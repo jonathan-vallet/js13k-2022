@@ -93,6 +93,19 @@
     border-radius: 12px;
     color: $color-white;
     font-size: 24px;
+
+    &.-elf {
+        background: $color-elf;
+    }
+    &.-dwarf {
+        background: $color-dwarf;
+    }
+    &.-human {
+        background: $color-human;
+    }
+    &.-orc {
+        background: $color-orc;
+    }
 }
 
 .card__imageWrapper {

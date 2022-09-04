@@ -17,7 +17,7 @@ function generateCharacterCard(character) {
 ${drawCharacterFace(character)}
 </div></div>
 <div class="card__content">
-<b class="card__race">🫀 ${character.race}</b>
+<b class="card__race -${character.race}">${raceDiplayName[character.race]}</b>
  <p class="card__name">${character.name}</p>
  <p>💀<b> ${character.deathCause}</b></p>
  <p><b>${character.height}</b>m
@@ -114,9 +114,10 @@ function release() {
 
   if (Math.abs(swipedDistance) >= minDistancetoSwipe) {
     $currentCard.classList.add("inactive");
+    clearTimeout(errorMessageTimeout);
+    clearTimeout(comboMessageTimeout);
     // 4 characters created at start, set offset to get current card
     updateScore(hasAccepted, characterList[currentCardIndex - 4]);
-
     setTimeout(() => {
       $currentCard.remove();
       addCharacter();

@@ -1,6 +1,7 @@
 let raceList = [
   {
     name: "human",
+    display: "Human",
     minHeight: 1.5,
     maxHeight: 2,
     minWeight: 50,
@@ -32,6 +33,13 @@ let raceList = [
     maxAge: 100,
   },
 ];
+
+let raceDiplayName = {
+  human: "🧬 Human",
+  dwarf: "🍄 Dwarf",
+  elf: "🧝‍♂️ Elf",
+  orc: "🫀 Orc",
+};
 
 // Elfs ears
 let elfEars = [
