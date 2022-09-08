@@ -30,3 +30,25 @@ function endGame() {
 }
 
 createBackground();
+if (!getFromLS("scores")) {
+  let scoreList = [];
+  for (let i = 0; i < 5; ++i) {
+    // 5 scores with random 3 letters names
+    scoreList.push({
+      name: Math.random().toString(36).substring(2, 5),
+      score: i * 10 + 50,
+    });
+  }
+  setToLS("scores", scoreList);
+}
+
+// Display all score in list items
+let scoreList = getFromLS("scores");
+let $scoreList = $("scoreList");
+scoreList.forEach((score, index) => {
+  let $li = createElement("li");
+  $li.innerHTML = `<span><b>${index + 1}.</b> ${score.name}</span> <b>${
+    score.score
+  }</b>`;
+  $scoreList.appendChild($li);
+});

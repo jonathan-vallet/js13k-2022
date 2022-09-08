@@ -19,33 +19,46 @@
       </div>
       <div id="home">
         <h1>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 258.5 302.5">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 53">
             <path
-              d="M141 0a2 2 0 0 0-1 0 2 2 0 0 0-2 2c7 48-3 100-60 120a1 1 0 0 1-1 0 99 99 0 0 1-14-46 2 2 0 0 0-3-2 123 123 0 0 0 69 228c77 1 129-60 129-127 0-89-62-148-117-175Z"
+              d="M13 21h1-1C24 18 25 9 24 1l1-1c9 5 20 15 20 30 0 11-7 20-18 22V37h7v-7h-7v-8h-9v8h-6v7h6v15a21 21 0 0 1-8-39h1l2 8Z"
               fill="#d06e6d"
             />
           </svg>
           tindeath
         </h1>
-        <button id="startButton">Start ➡️</button>
+        <div id="bestScores" class="block">
+          <h2>Best Scores</h2>
+          <ul id="scoreList"></ul>
+        </div>
+        <button id="startButton">Start</button>
       </div>
       <div id="tutorial">
-        <p id="tutorial-1" data-step="1">
-          <span>
-            <b>Welcome,</b>
+        <div id="tutorial-1" class="block" data-step="1">
+          <div>
+            <div class="card__image"></div>
+            <h2>Welcome,</h2>
             dear minion! Here you are a new guardian of the gates of death.
             <button class="next">Next ➡️</button>
-          </span>
-          <span>
+          </div>
+          <div>
+            <div class="card__image"></div>
             Your job : determine which souls shall pass to heaven!
             <button class="next">Next ➡️</button>
-          </span>
-          <span>
+          </div>
+          <div>
+            <div class="card__image"></div>
             Look out : only accept valid profiles ! Some are ready to trick us
             to be accepted....
+            <button class="next">Next ➡️</button>
+          </div>
+          <div>
+            <div class="card__image"></div>
+            And remember: your time is running out, and all you success and
+            failure will be counted!
             <button id="tutorial1Button">Got it ! ✔️</button>
-          </span>
-        </p>
+          </div>
+        </div>
 
         <p id="tutorial-2">
           <b>Swipe right to <i class="good">accept</i> a soul.</b>

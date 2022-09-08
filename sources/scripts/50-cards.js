@@ -12,7 +12,7 @@ function generateCharacterCard(character) {
 <div class="card__imageWrapper" style="background: #${
     character.backgroundCol
   }"><div class="card__image" style="transform:translateY(${
-    (2.5 - character.height) * 50
+    (2.2 - character.height) * 80
   }px) scaleX(${1 + (character.weight - 70) / 200})">
 ${drawCharacterFace(character)}
 </div></div>

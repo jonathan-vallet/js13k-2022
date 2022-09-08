@@ -16,7 +16,7 @@ function generateCharacter() {
       lastNameList[race.name]
     )}`,
     deathCause: getRandomItem(deathCauseList),
-    height: getRandomGaussian(race.minHeight, race.maxHeight),
+    height: getRandomGaussian(race.minHeight * 10, race.maxHeight * 10) / 10,
     weight: getRandomGaussian(race.minWeight, race.maxWeight),
     age: getRandomGaussian(42, race.maxAge),
   };

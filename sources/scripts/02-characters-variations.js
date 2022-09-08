@@ -18,7 +18,7 @@ let raceList = [
   },
   {
     name: "elf",
-    minHeight: 1.9,
+    minHeight: 2.5,
     maxHeight: 2.5,
     minWeight: 55,
     maxWeight: 80,
@@ -54,7 +54,7 @@ let colorList = {
     "DDAE62",
     "48848E",
     "A82E2D",
-    "#923F21",
+    "923F21",
     "0C602D",
     "4D274D",
     "212226",
