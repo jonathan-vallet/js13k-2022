@@ -11,15 +11,24 @@ module.exports = function () {
   const zipConfig = config.tasks.zip;
 
   var replaceList = {
-    tutorial: "t",
-    card: "c",
     step: "st",
     startButton: "sB",
     gameWrapper: "gW",
+    backgroundDoor: "bD",
+    backgroundOverflow: "bgo",
+    backgroundWrapper: "bgw",
+    c__imageWrapper: "c_iW",
+    c__image: "c_i",
+    errorMessage: "eM",
     orc: "o",
     elf: "e",
     dwarf: "d",
     human: "h",
+    t1Button: "t1B",
+    "tutorial-1": "t1",
+    "tutorial-2": "t2",
+    "tutorial-3": "t3",
+    "tutorial-4": "t4",
   };
 
   var valueList = [];
