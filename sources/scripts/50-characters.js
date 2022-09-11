@@ -16,14 +16,12 @@ function generateCharacter() {
     deathCause: getRandomItem(deathCauseList),
     height: getRandomGaussian(race.minHeight * 10, race.maxHeight * 10) / 10,
     weight: getRandomGaussian(race.minWeight, race.maxWeight),
-    age: getRandomGaussian(42, race.maxAge),
+    age: getRandomGaussian(race.minAge, race.maxAge),
   };
   // Set a random element for every part
   Object.keys(customizationList).forEach((part) => {
-    character[part] =
-      customizationList[part][
-        getRandomNumber(0, customizationList[part].length - 1)
-      ];
+    let partNumber = getRandomNumber(0, customizationList[part].length - 1);
+    character[part] = customizationList[part][partNumber];
     character[part + "Col"] =
       colorList[part][getRandomNumber(0, colorList[part].length - 1)];
   });
@@ -35,6 +33,13 @@ function generateCharacter() {
   if (character.race == "elf") {
     character.faceCol = getRandomItem(characterElfFaceColorList);
     character.ear = elfEars;
+  }
+  if (character.race == "orc") {
+    character.mouth = orcMouth;
+  }
+  // Removes wrinkles if character is not old
+  if (character.age < race.maxAge - (race.maxAge - 42) * 0.3) {
+    character.wrinkles = [];
   }
 
   // Adds error randomly. For tutorial set second card on error only
@@ -97,12 +102,26 @@ function addRandomError(character) {
         m: `an elf without pointy ears`,
       };
     }
+    if (hasHighScore && random() < 0.2) {
+      // Change elf weight
+      error = {
+        weight: getRandomGaussian(100, 120),
+        m: `an elf weigh more than 100kg`,
+      };
+    }
   } else {
-    // Set elf ears to other races
+    // Set elf ears to other races (not orc, as in some fantasy they got ears like elves)
     if (characterRace != "orc" && random() < 0.2) {
       error = {
         ear: elfEars,
         m: `a ${characterRace} with pointy ears`,
+      };
+    }
+    if (hasHighScore && characterRace == "orc" && random() < 0.2) {
+      // Change orc weight
+      error = {
+        weight: getRandomGaussian(50, 70),
+        m: `an orc weigh less than 80kg`,
       };
     }
     // Change age
@@ -140,8 +159,21 @@ function addRandomError(character) {
     };
   }
 
+  // If character is old, change character death reason to "old age"
+  if (random < 0.4 && character.wrinkles.length) {
+    character.deathCause = "old Age";
+    // And sometimes change age to a young one, introducing error
+    if (hasHighScore && random < 0.5) {
+      let maxAge = characterRace == "elf" ? 120 : 55;
+      let newAge = getRandomNumber(40, maxAge); // Not gaussian here
+      error = {
+        age: newAge,
+        m: `a ${characterRace} dying from old age at ${newAge}`,
+      };
+    }
+  }
+
   character.error = error;
-  console.log(error, character);
 }
 
 function drawCharacterFace(character) {

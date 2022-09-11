@@ -71,5 +71,6 @@ function endTutorial() {
   delete $gameWrapper.dataset.tutorial;
   currentTutorialStep = 0;
   setToLS("tutoWatched", true);
+  $("tutorial-repeat").style.display = "block";
   startNewGame();
 }

@@ -13,7 +13,7 @@ function generateCharacterCard(character) {
     character.backgroundCol
   }"><div class="card__image" style="transform:translateY(${
     (2.2 - character.height) * 80
-  }px) scaleX(${1 + (character.weight - 70) / 200})">
+  }px) scaleX(${1 + (character.weight - 80) / 200})">
 ${drawCharacterFace(character)}
 </div></div>
 <div class="card__content">
@@ -32,6 +32,23 @@ ${drawCharacterFace(character)}
   return $card;
 }
 
+// Swipe cards with arrow keys
+document.addEventListener("keydown", (e) => {
+  if (e.key == "ArrowLeft" && currentTutorialStep !== 1) {
+    if (currentTutorialStep) {
+      $gameWrapper.classList.remove("-demo");
+      $gameWrapper.offsetWidth;
+    }
+    swipeCard(-1);
+  } else if (e.key == "ArrowRight" && currentTutorialStep !== 2) {
+    if (currentTutorialStep) {
+      $gameWrapper.classList.remove("-demo");
+      $gameWrapper.offsetWidth;
+    }
+    swipeCard(1);
+  }
+});
+
 // Adds card events to drag
 function cardDownHandler(card) {
   card.addEventListener("mousedown", (e) => startCardDrag(card, e, "mouse"));
@@ -39,7 +56,7 @@ function cardDownHandler(card) {
 }
 
 function startCardDrag(card, e, type) {
-  $currentCard = card;
+  $currentCard = $$("#cardList .card:last-child");
   var startX = e.pageX || e.touches[0].pageX;
 
   let cardMoveHandler = (e) => {
@@ -97,34 +114,36 @@ function moveCard() {
     opacity <= 0 ? 0 : opacity;
 }
 
+function swipeCard(hasAccepted) {
+  if (isSwiping) return;
+  isSwiping = true;
+
+  $currentCard = $$("#cardList .card:last-child");
+  $currentCard.classList.add(hasAccepted > 0 ? "to-right" : "to-left");
+
+  $currentCard.classList.add("inactive");
+  clearTimeout(errorMessageTimeout);
+  clearTimeout(comboMessageTimeout);
+  // 4 characters created at start, set offset to get current card
+  updateScore(hasAccepted, characterList[currentCardIndex - 4]);
+  setTimeout(() => {
+    $currentCard.remove();
+    isSwiping = false;
+
+    if (currentTutorialStep === 1) {
+      showTutorialStep3();
+    } else if (currentTutorialStep === 2) {
+      showTutorialStep4();
+    }
+
+    addCharacter();
+  }, 300);
+}
+
 function release() {
-  let hasAccepted = true;
-  if (currentTutorialStep === 1) {
-    showTutorialStep3();
-  } else if (currentTutorialStep === 2) {
-    showTutorialStep4();
-  }
-
-  if (swipedDistance >= minDistancetoSwipe) {
-    $currentCard.classList.add("to-right");
-  } else if (swipedDistance <= -minDistancetoSwipe) {
-    hasAccepted = false;
-    $currentCard.classList.add("to-left");
-  }
-
   if (Math.abs(swipedDistance) >= minDistancetoSwipe) {
-    $currentCard.classList.add("inactive");
-    clearTimeout(errorMessageTimeout);
-    clearTimeout(comboMessageTimeout);
-    // 4 characters created at start, set offset to get current card
-    updateScore(hasAccepted, characterList[currentCardIndex - 4]);
-    setTimeout(() => {
-      $currentCard.remove();
-      addCharacter();
-    }, 300);
-  }
-
-  if (Math.abs(swipedDistance) < minDistancetoSwipe) {
+    swipeCard(swipedDistance >= minDistancetoSwipe ? 1 : -1);
+  } else {
     $currentCard.classList.add("reset");
   }
 

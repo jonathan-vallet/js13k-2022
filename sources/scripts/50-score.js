@@ -1,7 +1,7 @@
 function updateScore(hasAccepted, currentCard) {
   if (
-    (hasAccepted && currentCard.error) ||
-    (!hasAccepted && !currentCard.error)
+    (hasAccepted > 0 && currentCard.error) ||
+    (!hasAccepted < 0 && !currentCard.error)
   ) {
     combo = 0;
     scoreMultiplier = 1;

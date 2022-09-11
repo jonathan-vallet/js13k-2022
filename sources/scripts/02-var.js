@@ -10,6 +10,7 @@ let errorMessageTimeout;
 let comboMessageTimeout;
 let gameTimer;
 let updateTimerInterval;
+let isSwiping = false;
 
 let $gameWrapper = $("gameWrapper");
 let $cardList = $("cardList");

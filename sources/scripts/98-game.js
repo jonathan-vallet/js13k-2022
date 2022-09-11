@@ -49,3 +49,7 @@ let bestScore = getFromLS("bestScore");
 if (bestScore) {
   $("bestScore").innerHTML = `Best score: <b id="bestSscore">${bestScore}</b>`;
 }
+
+if (!getFromLS("tutoWatched")) {
+  $("tutorial-repeat").style.display = "none";
+}

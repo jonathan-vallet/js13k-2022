@@ -6,14 +6,16 @@ let raceList = [
     maxHeight: 2,
     minWeight: 50,
     maxWeight: 90,
+    minAge: 42,
     maxAge: 90,
   },
   {
     name: "dwarf",
     minHeight: 1,
     maxHeight: 1.4,
-    minWeight: 60,
+    minWeight: 70,
     maxWeight: 100,
+    minAge: 42,
     maxAge: 80,
   },
   {
@@ -22,15 +24,17 @@ let raceList = [
     maxHeight: 2.5,
     minWeight: 55,
     maxWeight: 80,
+    minAge: 100,
     maxAge: 230,
   },
   {
     name: "orc",
     minHeight: 1.8,
     maxHeight: 2.2,
-    minWeight: 80,
-    maxWeight: 120,
-    maxAge: 100,
+    minWeight: 90,
+    maxWeight: 140,
+    minAge: 60,
+    maxAge: 120,
   },
 ];
 
@@ -44,6 +48,11 @@ let raceDiplayName = {
 // Elfs ears
 let elfEars = [
   "M222 168v-25.6c5.4-8.2 16.2-23.6 23.4-26.2 6.5-2.4 0 20.7-5.3 37A22.2 22.2 0 0 1 222 168ZM105.1 142.4v25.7a22.2 22.2 0 0 1-18-15c-5.3-16.2-11.9-39.3-5.4-37 7.2 2.7 18 18 23.4 26.3Z",
+];
+// Orcs mouth
+let orcMouth = [
+  '{"d":"M158.2 181.8c-2.3.7-4.5 1.5-6.5 2.4-2.2-5.8 1.2-11.7 3.9-12.7 0 4.5.8 7.6 2.6 10.3ZM176 179.1h-5.5c2.5-1 4-2.3 4.8-5.4 1 .7 1.8 3.3.7 5.4Z", "fill":"#fff"}',
+  '{"d":"M150 185c10-7.5 25-7.5 29-5", "stroke":"#212226", "stroke-width":"2", "stroke-linecap":"round", "stroke-linejoin":"round"}',
 ];
 
 let colorList = {
@@ -64,6 +73,7 @@ let colorList = {
   ear: [],
   eyebrow: [],
   beard: [],
+  wrinkles: ["212226"],
 };
 
 let characterOrcFaceColorList = ["AAA997", "98AC5E", "545119", "354934"];
@@ -88,6 +98,11 @@ let customizationList = {
     [
       "M221.9 110a58.4 58.4 0 1 0-116.9 0v61.8a25 25 0 0 0 10 20l29.2 22a32 32 0 0 0 38.5 0l29.3-22a25 25 0 0 0 9.9-20V110Z",
       "M164.3 51.6a58.5 58.5 0 0 1 48 57.5v61.8a25 25 0 0 1-9.8 20l-29.3 22a32 32 0 0 1-17.5 6.3 32 32 0 0 0 27-5.4l29.3-22a25 25 0 0 0 9.9-20V110c0-32-25.7-58-57.6-58.4Z",
+    ],
+  ],
+  wrinkles: [
+    [
+      '{"d":"M205 135h11M205 138l10 1M205 141l9 3M122 135h-11M122 138l-10 1M122 141l-9 3M127 97l20 2h32l20-2M127 102l20 2h32l20-2M127 107l20 2h32l20-2", "stroke":"#212226", "stroke-linecap":"round", "stroke-opacity":"0.2", "fill-opacity":"0.2"}',
     ],
   ],
   hair: [
@@ -235,11 +250,6 @@ let customizationList = {
       '{"fill-rule":"evenodd", "clip-rule":"evenodd", "d":"M178.3 182.7a31.2 31.2 0 0 1-29 5.9c2.3-7.3 8-6.6 12.1-6 1.2 0 2.2.2 3 .1.7 0 1.6-.4 2.7-.8 3.3-1.2 7.8-3 11.2.8Z", "fill":"#D06E6D"}',
       '{"fill-rule":"evenodd", "clip-rule":"evenodd", "d":"M145.7 170.2c.2 2.4.7 5.3 2 5.5 1.8.3 21.8-1.2 24.3-2.5.5 0 .8-4.5.8-4.5s2.4 3.8 2.9 3.7l1-.5c.7-.4 1.5-.7 2.3-2.4.8-1.7.7-3 0-4.5-1.3 0-2.7.2-3.7.8-6.7 4-8 3.9-19.3 3.8h-7c-1.3 0-2.3.2-3.3.6Z", "fill":"#fff"}',
     ],
-    // Orc
-    [
-      '{"d":"M158.2 181.8c-2.3.7-4.5 1.5-6.5 2.4-2.2-5.8 1.2-11.7 3.9-12.7 0 4.5.8 7.6 2.6 10.3ZM176 179.1h-5.5c2.5-1 4-2.3 4.8-5.4 1 .7 1.8 3.3.7 5.4Z", "fill":"#fff"}',
-      '{"d":"M150 185c10-7.5 25-7.5 29-5", "stroke":"#212226", "stroke-width":"2", "stroke-linecap":"round", "stroke-linejoin":"round"}',
-    ],
   ],
 };
 
@@ -249,7 +259,6 @@ let deathCauseList = [
   "arrow in knee",
   "laugh",
   "eaten by blob",
-  "old age",
   "silly accident",
   "natural disaster",
   "poison",
