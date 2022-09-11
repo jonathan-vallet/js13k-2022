@@ -1,4 +1,8 @@
-$startButton.addEventListener("click", initGame);
+[...$$$(".startButton")].forEach(($button) => {
+  $button.addEventListener("click", initGame);
+});
+
+$("tutorial-repeat").addEventListener("click", showTutorial);
 
 function initGame() {
   getFromLS("tutoWatched") ? startNewGame() : showTutorial();
@@ -12,7 +16,7 @@ function startNewGame() {
   score = 0;
   combo = 0;
   scoreMultiplier = 1;
-  gameTimer = 30 * 1000;
+  gameTimer = 60 * 1000;
 
   updateScoreDisplay();
 
@@ -26,29 +30,22 @@ function startNewGame() {
 }
 
 function endGame() {
-  console.log("end game!");
+  setToLS("bestScore", score);
+  $("endscore").innerHTML = score;
+
+  let character = setDemonFace();
+  character.eye = customizationList.eye[3];
+  character.mouth = customizationList.mouth[2];
+  character.eyebrow = customizationList.eyebrow[3];
+  $$("#end .card__image").innerHTML = drawCharacterFace(character);
+
+  $gameWrapper.dataset.screen = 3;
 }
 
 createBackground();
-if (!getFromLS("scores")) {
-  let scoreList = [];
-  for (let i = 0; i < 5; ++i) {
-    // 5 scores with random 3 letters names
-    scoreList.push({
-      name: Math.random().toString(36).substring(2, 5),
-      score: i * 10 + 50,
-    });
-  }
-  setToLS("scores", scoreList);
-}
 
 // Display all score in list items
-let scoreList = getFromLS("scores");
-let $scoreList = $("scoreList");
-scoreList.forEach((score, index) => {
-  let $li = createElement("li");
-  $li.innerHTML = `<span><b>${index + 1}.</b> ${score.name}</span> <b>${
-    score.score
-  }</b>`;
-  $scoreList.appendChild($li);
-});
+let bestScore = getFromLS("bestScore");
+if (bestScore) {
+  $("bestScore").innerHTML = `Best score: <b id="bestSscore">${bestScore}</b>`;
+}

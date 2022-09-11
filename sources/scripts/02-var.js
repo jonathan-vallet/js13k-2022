@@ -15,5 +15,4 @@ let $gameWrapper = $("gameWrapper");
 let $cardList = $("cardList");
 let $score = $("score");
 let $combo = $("combo");
-let $startButton = $("startButton");
 let $errorMessage = $("errorMessage");

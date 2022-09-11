@@ -3,7 +3,6 @@ function updateScore(hasAccepted, currentCard) {
     (hasAccepted && currentCard.error) ||
     (!hasAccepted && !currentCard.error)
   ) {
-    --score;
     combo = 0;
     scoreMultiplier = 1;
     let message = currentCard.error
@@ -16,6 +15,7 @@ function updateScore(hasAccepted, currentCard) {
     )}</div></div>`;
 
     displayErrorMessage(message);
+    $combo.classList.remove("-success");
   } else {
     score += scoreMultiplier;
     ++combo;
@@ -66,5 +66,5 @@ function displayErrorMessage(message) {
 
   errorMessageTimeout = setTimeout(() => {
     $errorMessage.classList.remove("-shown");
-  }, 3000);
+  }, 5000);
 }

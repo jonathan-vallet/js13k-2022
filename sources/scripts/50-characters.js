@@ -12,9 +12,7 @@ function generateCharacter() {
   let race = isSpecificTutorialCard ? raceList[3] : getRandomItem(raceList);
   let character = {
     race: race.name,
-    name: `${getRandomItem(firstNameList[race.name])} ${getRandomItem(
-      lastNameList[race.name]
-    )}`,
+    name: generateName(race.name),
     deathCause: getRandomItem(deathCauseList),
     height: getRandomGaussian(race.minHeight * 10, race.maxHeight * 10) / 10,
     weight: getRandomGaussian(race.minWeight, race.maxWeight),
@@ -60,7 +58,10 @@ function generateCharacter() {
 
 // Adds some errors to character randomly
 function addRandomError(character) {
+  let characterRace = character.race;
   let error;
+  // If player has a higher score, adds some new more difficult errors
+  let hasHighScore = score > 15;
 
   // Change character race
   if (random() < 0.3) {
@@ -72,18 +73,18 @@ function addRandomError(character) {
 
     character.error = {
       race: newRace.name,
-      m: `a ${character.race} looking like ${newRace.name}`,
+      m: `a ${characterRace} looking like ${newRace.name}`,
     };
   }
 
   // Change height for elf/dwarfs
-  if (character.race == "dwarf" && random() < 0.2) {
+  if (characterRace == "dwarf" && random() < 0.2) {
     error = {
       height: getRandomGaussian(1.8, 2.4),
       m: `a dwarf taller than 1.5m`,
     };
   }
-  if (character.race == "elf") {
+  if (characterRace == "elf") {
     if (random() < 0.2) {
       error = {
         height: getRandomGaussian(1, 1.4),
@@ -98,36 +99,49 @@ function addRandomError(character) {
     }
   } else {
     // Set elf ears to other races
-    if (random() < 0.2) {
+    if (characterRace != "orc" && random() < 0.2) {
       error = {
         ear: elfEars,
-        m: `a ${character.race} with pointy ears`,
+        m: `a ${characterRace} with pointy ears`,
       };
     }
     // Change age
-    if (random() < 0.1) {
+    if (hasHighScore && random() < 0.1) {
       error = {
         age: getRandomNumber(160, 230),
-        m: `a ${character.race} older than 150 years`,
+        m: `a ${characterRace} older than 150 years`,
       };
     }
 
     // Change skin color for orc/not orc
-    if (random() < 0.1) {
+    if (hasHighScore && random() < 0.1) {
       let skinColor = getRandomItem(
-        ["orc", "elf"].indexOf(character.race) >= 0
+        ["orc", "elf"].indexOf(characterRace) >= 0
           ? colorList.face
           : characterOrcFaceColorList.concat(characterElfFaceColorList)
       );
       error = {
         faceCol: skinColor,
         earCol: skinColor,
-        m: `a ${character.race} with this skin color`,
+        m: `a ${characterRace} with this skin color`,
       };
     }
   }
 
+  // Change character name
+  if (hasHighScore && random() < 0.1) {
+    // Get random race other than current one
+    let raceList = ["orc", "elf", "human", "dwarf"];
+    raceList.splice(raceList.indexOf(characterRace), 1);
+    let newName = generateName(getRandomItem(raceList));
+    error = {
+      name: newName,
+      m: `a ${characterRace} named ${newName}`,
+    };
+  }
+
   character.error = error;
+  console.log(error, character);
 }
 
 function drawCharacterFace(character) {

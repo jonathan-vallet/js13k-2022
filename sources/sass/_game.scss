@@ -11,75 +11,87 @@
     z-index: 3;
 
     // Welcome screen
-    &[data-screen="0"] {
-        #ui,
-        #tutorial,
-        #cardList {
-            display: none;
-        }
-    }
-
     &:not([data-screen="0"]) {
         #home {
             display: none;
         }
     }
 
-    &[data-screen="1"] {
-        &[data-tutorial="1"] {
-            #ui,
-            #cardList,
-            #tutorial-2,
-            #tutorial-3,
-            #tutorial-4 {
-                display: none;
-            }
+    &:not([data-screen="1"]) {
+        #tutorial {
+            display: none;
         }
-        &[data-tutorial="2"] {
-            #ui,
-            #tutorial-1,
-            #tutorial-3,
-            #tutorial-4 {
-                display: none;
-            }
-
-            &.-demo {
-                .card {
-                    &:last-child {
-                        animation: show-swipe-right 1.5s ease 1s infinite;
-                    }
-                }
-            }
+    }
+    &:not([data-screen="1"]) {
+        #tutorial {
+            display: none;
         }
-        &[data-tutorial="3"] {
-            #ui,
-            #tutorial-1,
-            #tutorial-2,
-            #tutorial-4 {
-                display: none;
-            }
-
-            &.-demo {
-                .card {
-                    &:last-child {
-                        animation: show-swipe-left 1.5s ease 1s infinite;
-                    }
-                }
-            }
+    }
+    &:not([data-screen="2"]) {
+        #cardList,
+        #ui {
+            display: none;
         }
-        &[data-tutorial="4"] {
-            #ui,
-            #cardList,
-            #tutorial-1,
-            #tutorial-2,
-            #tutorial-3 {
-                display: none;
-            }
+    }
+    &:not([data-screen="3"]) {
+        #end {
+            display: none;
         }
     }
 
-    &[data-screen="2"] {
-        #tutorial {
+    &[data-tutorial="1"] {
+        #ui,
+        #cardList,
+        #tutorial-2,
+        #tutorial-3,
+        #tutorial-4 {
+            display: none;
+        }
+    }
+    &[data-tutorial="2"] {
+        #ui,
+        #tutorial-1,
+        #tutorial-3,
+        #tutorial-4 {
+            display: none;
+        }
+        #cardList {
+            display: block;
+        }
+
+        &.-demo {
+            .card {
+                &:last-child {
+                    animation: show-swipe-right 1.5s ease 1s infinite;
+                }
+            }
+        }
+    }
+    &[data-tutorial="3"] {
+        #ui,
+        #tutorial-1,
+        #tutorial-2,
+        #tutorial-4 {
+            display: none;
+        }
+        #cardList {
+            display: block;
+        }
+
+        &.-demo {
+            .card {
+                &:last-child {
+                    animation: show-swipe-left 1.5s ease 1s infinite;
+                }
+            }
+        }
+    }
+    &[data-tutorial="4"] {
+        #ui,
+        #cardList,
+        #tutorial-1,
+        #tutorial-2,
+        #tutorial-3 {
             display: none;
         }
     }

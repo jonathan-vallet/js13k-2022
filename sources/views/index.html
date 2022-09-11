@@ -2,20 +2,23 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tindeath</title>
     <link rel="stylesheet" href="css/style.css" inline />
   </head>
   <body>
-    <div id="backgroundWrapper">
-      <div id="background"></div>
+    <div id="backgroundOverflow">
+      <div id="backgroundWrapper">
+        <div id="background"></div>
+      </div>
     </div>
     <div id="backgroundDoor"></div>
     <div id="clouds"></div>
     <div id="gameWrapper" data-screen="0">
       <div id="ui">
         <p>Score<br /><b id="score">0</b></p>
-        <p>Timer<br /><b id="time">00:30</b></p>
-        <p id="combo">Combo x3!</p>
+        <p>Timer<br /><b id="time"></b></p>
+        <p id="combo"></p>
       </div>
       <div id="home">
         <h1>
@@ -27,36 +30,55 @@
           </svg>
           tindeath
         </h1>
-        <div id="bestScores" class="block">
-          <h2>Best Scores</h2>
-          <ul id="scoreList"></ul>
+        <div>
+          <button class="startButton appear">Start</button>
+          <p id="tutorial-repeat" class="appear">Replay tutorial</p>
+          <p id="bestScore" class="appear"></p>
         </div>
-        <button id="startButton">Start</button>
       </div>
       <div id="tutorial">
-        <div id="tutorial-1" class="block" data-step="1">
+        <div id="tutorial-1" class="block">
           <div>
-            <div class="card__image"></div>
+            <div class="card__imageWrapper">
+              <div class="card__image"></div>
+            </div>
             <h2>Welcome,</h2>
-            dear minion! Here you are a new guardian of the gates of death.
+            dear minion! Here you are a new guardian of death, protecting gates
+            access.
             <button class="next">Next ➡️</button>
           </div>
           <div>
-            <div class="card__image"></div>
-            Your job : determine which souls shall pass to heaven!
+            <div class="card__imageWrapper">
+              <div class="card__image"></div>
+            </div>
+            <h2>Your job</h2>
+            Check which souls shall pass to heaven or not!
             <button class="next">Next ➡️</button>
           </div>
           <div>
-            <div class="card__image"></div>
-            Look out : only accept valid profiles ! Some are ready to trick us
-            to be accepted....
-            <button class="next">Next ➡️</button>
+            <div class="card__imageWrapper">
+              <div class="card__image"></div>
+            </div>
+            <h2>Look out</h2>
+            Only accept valid profiles! Some are ready to trick us to be
+            accepted...
+            <button id="tutorial1Button">Next ➡️</button>
           </div>
           <div>
-            <div class="card__image"></div>
-            And remember: your time is running out, and all you success and
-            failure will be counted!
-            <button id="tutorial1Button">Got it ! ✔️</button>
+            <div class="card__imageWrapper">
+              <div class="card__image"></div>
+            </div>
+            <h2>Nice!</h2>
+            You got it! Now you are ready for your new job, guardian of death
+            <button class="next">Yeah!</button>
+          </div>
+          <div>
+            <div class="card__imageWrapper">
+              <div class="card__image"></div>
+            </div>
+            But remember: your time is running out, and all you'll be scored
+            every day!
+            <button id="tutorialEndButton">Got it!</button>
           </div>
         </div>
 
@@ -65,17 +87,25 @@
         </p>
         <p id="tutorial-3">
           <b>
-            A human green like an orc?! Impossible!<br />
+            A Human green like an Orc?! Impossible!<br />
             Swipe left to <i class="wrong">reject</i> this soul
           </b>
         </p>
-        <div id="tutorial-4">
-          <h1>Ready ?</h1>
-          <button id="tutorialEndButton">Let's go !</button>
-        </div>
       </div>
       <div id="cardList"></div>
       <div id="errorMessage"></div>
+      <div id="end">
+        <div class="block">
+          <div class="card__imageWrapper">
+            <div class="card__image"></div>
+          </div>
+          <h2>Time is over</h2>
+          Your score for today: <b id="endscore"></b><br />
+          That's not enough! That's NEVER will be enough!<br />
+          Restart to improve your score!
+          <button class="startButton">Play again</button>
+        </div>
+      </div>
     </div>
     <script src="scripts/game.js" inline></script>
   </body>

@@ -1,10 +1,5 @@
 #tutorial {
     font-family: Tahoma, sans-serif;
-
-    .card__image {
-        width: 100%;
-        padding-top: 50%;
-    }
 }
 
 .block {
@@ -12,7 +7,7 @@
     text-align: center;
     margin: 10% auto;
     width: 100%;
-    max-width: 600px;
+    max-width: 326px;
     background: rgba(255, 249, 244, 0.9);
     box-shadow: 0 4px 0 #ddd;
     border-radius: 12px;
@@ -26,29 +21,12 @@
     }
 }
 
-#bestScores {
-    color: #00315f;
-}
+#bestScore,
+#tutorial-repeat {
+    text-align: center;
 
-#scoreList li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px 0;
-    font-size: 16px;
-
-    &:last-child {
-        border-bottom: none;
-    }
-
-    .name {
-        flex: 1;
-        text-align: left;
-    }
-
-    .score {
-        flex: 0 0 100px;
-        text-align: right;
+    b {
+        font-size: 120%;
     }
 }
 
@@ -56,29 +34,8 @@
     padding-top: 10px;
     font-size: 24px;
 
-    > * {
+    > :not(:first-child) {
         display: none;
-    }
-
-    &[data-step="1"] {
-        > :first-child {
-            display: block;
-        }
-    }
-    &[data-step="2"] {
-        > :nth-child(2) {
-            display: block;
-        }
-    }
-    &[data-step="3"] {
-        > :nth-child(3) {
-            display: block;
-        }
-    }
-    &[data-step="4"] {
-        > :last-child {
-            display: block;
-        }
     }
 
     button {
@@ -88,7 +45,7 @@
 
 #tutorial-2,
 #tutorial-3 {
-    max-width: 400px;
+    max-width: 326px;
     margin: 0 auto;
     text-align: center;
     font-size: 30px;
