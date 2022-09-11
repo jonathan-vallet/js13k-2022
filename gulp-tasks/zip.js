@@ -16,7 +16,6 @@ module.exports = function () {
     step: "st",
     startButton: "sB",
     gameWrapper: "gW",
-    score: "s",
     orc: "o",
     elf: "e",
     dwarf: "d",

@@ -3,6 +3,7 @@ function updateScore(hasAccepted, currentCard) {
     (hasAccepted > 0 && currentCard.error) ||
     (!hasAccepted < 0 && !currentCard.error)
   ) {
+    zzfxP(failSound);
     combo = 0;
     scoreMultiplier = 1;
     let message = currentCard.error
@@ -17,6 +18,7 @@ function updateScore(hasAccepted, currentCard) {
     displayErrorMessage(message);
     $combo.classList.remove("-success");
   } else {
+    zzfxP(comboSound);
     score += scoreMultiplier;
     ++combo;
     updateCombo();

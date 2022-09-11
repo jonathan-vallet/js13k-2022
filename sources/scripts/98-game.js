@@ -5,6 +5,7 @@
 $("tutorial-repeat").addEventListener("click", showTutorial);
 
 function initGame() {
+  zzfxP(...ambientMusicData);
   getFromLS("tutoWatched") ? startNewGame() : showTutorial();
 }
 

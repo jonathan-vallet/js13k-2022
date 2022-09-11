@@ -86,27 +86,27 @@ function addRandomError(character) {
   if (characterRace == "dwarf" && random() < 0.2) {
     error = {
       height: getRandomGaussian(1.8, 2.4),
-      m: `a dwarf taller than 1.5m`,
+      m: `a Dwarf taller than 1.5m`,
     };
   }
   if (characterRace == "elf") {
     if (random() < 0.2) {
       error = {
         height: getRandomGaussian(1, 1.4),
-        m: `an elf smaller than 1.9m`,
+        m: `an Elf smaller than 1.9m`,
       };
     } else if (random() < 0.2) {
       // Change elf ears
       error = {
         ear: getRandomItem(customizationList["ear"]),
-        m: `an elf without pointy ears`,
+        m: `an Elf without pointy ears`,
       };
     }
     if (hasHighScore && random() < 0.2) {
       // Change elf weight
       error = {
         weight: getRandomGaussian(100, 120),
-        m: `an elf weigh more than 100kg`,
+        m: `an Elf weigh more than 100kg`,
       };
     }
   } else {
@@ -121,7 +121,7 @@ function addRandomError(character) {
       // Change orc weight
       error = {
         weight: getRandomGaussian(50, 70),
-        m: `an orc weigh less than 80kg`,
+        m: `an Orc weigh less than 80kg`,
       };
     }
     // Change age
