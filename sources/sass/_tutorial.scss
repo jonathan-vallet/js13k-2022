@@ -16,8 +16,14 @@
     h2 {
         display: block;
         margin-bottom: 8px;
-        font-size: 40px;
+        font-size: 34px;
         color: #4d274d;
+    }
+
+    .card__imageWrapper {
+        margin: -24px 0 0 -24px;
+        width: calc(100% + 48px);
+        padding-top: 105%;
     }
 }
 

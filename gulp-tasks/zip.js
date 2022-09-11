@@ -17,6 +17,10 @@ module.exports = function () {
     startButton: "sB",
     gameWrapper: "gW",
     score: "s",
+    orc: "o",
+    elf: "e",
+    dwarf: "d",
+    human: "h",
   };
 
   var valueList = [];
