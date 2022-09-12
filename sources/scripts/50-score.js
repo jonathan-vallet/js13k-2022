@@ -1,9 +1,4 @@
 function updateScore(hasAccepted, currentCard) {
-  console.log(
-    hasAccepted,
-    currentCard.error,
-    hasAccepted < 0 && !currentCard.error
-  );
   if (
     (hasAccepted > 0 && currentCard.error) ||
     (hasAccepted < 0 && !currentCard.error)

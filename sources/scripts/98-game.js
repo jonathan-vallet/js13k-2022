@@ -13,19 +13,25 @@ $("helpButton").addEventListener("click", () => {
 $("soundButton").addEventListener("click", () => {
   isSoundMuted = !isSoundMuted;
   $("soundButton").innerHTML = isSoundMuted ? "🔇" : "🔊";
-  if (gameMusic) {
-    console.log("gameMusic", gameMusic);
-    if (isSoundMuted) {
+  if (isSoundMuted) {
+    if (gameMusic) {
       gameMusic.stop();
-    } else {
-      gameMusic.start();
     }
+  } else {
+    startMusic();
   }
 });
 
+function startMusic() {
+  if (!isSoundMuted && isGameStarted) {
+    gameMusic = zzfxP(...ambientMusicData);
+    gameMusic.loop = true;
+  }
+}
+
 function initGame() {
-  gameMusic = zzfxP(...ambientMusicData);
-  gameMusic.loop = true;
+  isGameStarted = true;
+  startMusic();
   getFromLS("tutoWatched") ? startNewGame() : showTutorial();
 }
 

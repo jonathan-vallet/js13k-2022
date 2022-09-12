@@ -120,7 +120,6 @@ function swipeCard(hasAccepted) {
   }
 
   $currentCard = $$("#cardList .card:last-child");
-  console.log($currentCard);
   if (!$currentCard) {
     return;
   }
