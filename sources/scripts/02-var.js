@@ -11,6 +11,7 @@ let comboMessageTimeout;
 let gameTimer;
 let updateTimerInterval;
 let isSwiping = false;
+let gameMusic;
 
 let $gameWrapper = $("gameWrapper");
 let $cardList = $("cardList");

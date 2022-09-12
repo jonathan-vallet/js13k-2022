@@ -3,9 +3,17 @@
 });
 
 $("tutorial-repeat").addEventListener("click", showTutorial);
+$("helpClose").addEventListener("click", () => {
+  $("help").classList.remove("-active");
+});
+$("helpButton").addEventListener("click", () => {
+  $("helpButton").classList.remove("-blink");
+  $("help").classList.add("-active");
+});
 
 function initGame() {
-  zzfxP(...ambientMusicData);
+  gameMusic = zzfxP(...ambientMusicData);
+  gameMusic.loop = true;
   getFromLS("tutoWatched") ? startNewGame() : showTutorial();
 }
 
@@ -33,6 +41,7 @@ function startNewGame() {
 function endGame() {
   setToLS("bestScore", score);
   $("endscore").innerHTML = score;
+  gameMusic.stop();
 
   let character = setDemonFace();
   character.eye = customizationList.eye[3];
@@ -53,4 +62,6 @@ if (bestScore) {
 
 if (!getFromLS("tutoWatched")) {
   $("tutorial-repeat").style.display = "none";
+} else {
+  $("helpButton").classList.add("-active");
 }

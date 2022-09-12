@@ -20,7 +20,7 @@ let raceList = [
   },
   {
     name: "elf",
-    minHeight: 2.5,
+    minHeight: 2,
     maxHeight: 2.5,
     minWeight: 55,
     maxWeight: 80,

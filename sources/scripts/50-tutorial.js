@@ -63,6 +63,7 @@ function showTutorialStep4() {
   // Wait swipe animation to end
   setTimeout(() => {
     $("tutorial-1").removeChild($("tutorial-1").firstChild);
+    $("helpButton").classList.add("-active", "-blink");
     $gameWrapper.dataset.tutorial = 1;
   }, 500);
 }

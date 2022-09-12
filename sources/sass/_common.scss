@@ -51,8 +51,65 @@ button {
     box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     cursor: pointer;
+    transition: all 250ms ease;
 
     &:hover {
-        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+        background: #6db58a;
+    }
+}
+
+#help {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    z-index: 9;
+
+    ul {
+        margin-top: 12px;
+    }
+
+    li {
+        text-align: left;
+        margin: 8px 0;
+    }
+
+    &:not(.-active) {
+        display: none;
+    }
+}
+
+#helpClose {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#helpButton {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 8px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 8;
+
+    &:not(.-active) {
+        display: none;
+    }
+
+    &.-blink {
+        animation: blink 1s infinite;
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
     }
 }

@@ -352,6 +352,7 @@ let ambientMusic = [
   70,
   {
     title: "Diablo",
+    Notes: "Unknown author",
     instruments: ["Instrument 1"],
     patterns: ["Pattern 0", "Pattern 1", "Pattern 2"],
   },

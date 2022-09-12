@@ -69,7 +69,7 @@ function addRandomError(character) {
   let hasHighScore = score > 15;
 
   // Change character race
-  if (random() < 0.3) {
+  if (random() < 0.35) {
     // Switch elf/orc to human/dwarf or opposite, to avoid confusions
     var newRace =
       ["elf", "orc"].indexOf(character.race) >= 0
@@ -83,19 +83,19 @@ function addRandomError(character) {
   }
 
   // Change height for elf/dwarfs
-  if (characterRace == "dwarf" && random() < 0.2) {
+  if (characterRace == "dwarf" && random() < 0.25) {
     error = {
       height: getRandomGaussian(1.8, 2.4),
       m: `a Dwarf taller than 1.5m`,
     };
   }
   if (characterRace == "elf") {
-    if (random() < 0.2) {
+    if (random() < 0.25) {
       error = {
         height: getRandomGaussian(1, 1.4),
         m: `an Elf smaller than 1.9m`,
       };
-    } else if (random() < 0.2) {
+    } else if (random() < 0.25) {
       // Change elf ears
       error = {
         ear: getRandomItem(customizationList["ear"]),
@@ -111,7 +111,7 @@ function addRandomError(character) {
     }
   } else {
     // Set elf ears to other races (not orc, as in some fantasy they got ears like elves)
-    if (characterRace != "orc" && random() < 0.2) {
+    if (characterRace != "orc" && random() < 0.25) {
       error = {
         ear: elfEars,
         m: `a ${characterRace} with pointy ears`,
@@ -125,7 +125,7 @@ function addRandomError(character) {
       };
     }
     // Change age
-    if (hasHighScore && random() < 0.1) {
+    if (hasHighScore && characterRace == "human" && random() < 0.25) {
       error = {
         age: getRandomNumber(160, 230),
         m: `a ${characterRace} older than 150 years`,
@@ -133,7 +133,7 @@ function addRandomError(character) {
     }
 
     // Change skin color for orc/not orc
-    if (hasHighScore && random() < 0.1) {
+    if (hasHighScore && random() < 0.2) {
       let skinColor = getRandomItem(
         ["orc", "elf"].indexOf(characterRace) >= 0
           ? colorList.face
@@ -148,7 +148,7 @@ function addRandomError(character) {
   }
 
   // Change character name
-  if (hasHighScore && random() < 0.1) {
+  if (hasHighScore && random() < 0.2) {
     // Get random race other than current one
     let raceList = ["orc", "elf", "human", "dwarf"];
     raceList.splice(raceList.indexOf(characterRace), 1);
@@ -160,7 +160,7 @@ function addRandomError(character) {
   }
 
   // If character is old, change character death reason to "old age"
-  if (random < 0.4 && character.wrinkles.length) {
+  if (random < 0.6 && character.wrinkles.length) {
     character.deathCause = "old Age";
     // And sometimes change age to a young one, introducing error
     if (hasHighScore && random < 0.5) {

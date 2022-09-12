@@ -30,11 +30,20 @@
 #bestScore,
 #tutorial-repeat {
     text-align: center;
-    cursor: pointer;
 
     b {
         font-size: 120%;
     }
+}
+
+#bestScore {
+    font-size: 120%;
+}
+
+#tutorial-repeat {
+    color: #fbd495;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 #tutorial-1 {
@@ -55,7 +64,11 @@
     max-width: 326px;
     margin: 0 auto;
     text-align: center;
-    font-size: 30px;
+    font-size: 24px;
+
+    b {
+        font-size: 30px;
+    }
 }
 
 i {

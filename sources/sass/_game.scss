@@ -120,3 +120,12 @@
         transform: none;
     }
 }
+
+.startButton {
+    background-color: #91cfda;
+    color: #212226;
+
+    &:hover {
+        background: #bde2e9;
+    }
+}
