@@ -10,6 +10,18 @@ $("helpButton").addEventListener("click", () => {
   $("helpButton").classList.remove("-blink");
   $("help").classList.add("-active");
 });
+$("soundButton").addEventListener("click", () => {
+  isSoundMuted = !isSoundMuted;
+  $("soundButton").innerHTML = isSoundMuted ? "🔇" : "🔊";
+  if (gameMusic) {
+    console.log("gameMusic", gameMusic);
+    if (isSoundMuted) {
+      gameMusic.stop();
+    } else {
+      gameMusic.start();
+    }
+  }
+});
 
 function initGame() {
   gameMusic = zzfxP(...ambientMusicData);
@@ -39,7 +51,10 @@ function startNewGame() {
 }
 
 function endGame() {
-  setToLS("bestScore", score);
+  let bestScore = getFromLS("bestScore") || 0;
+  if (score > bestScore) {
+    setToLS("bestScore", score);
+  }
   $("endscore").innerHTML = score;
   gameMusic.stop();
 

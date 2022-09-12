@@ -115,10 +115,18 @@ function moveCard() {
 }
 
 function swipeCard(hasAccepted) {
-  if (isSwiping) return;
-  isSwiping = true;
+  if (isSwiping) {
+    return;
+  }
 
   $currentCard = $$("#cardList .card:last-child");
+  console.log($currentCard);
+  if (!$currentCard) {
+    return;
+  }
+
+  isSwiping = true;
+
   $currentCard.classList.add(hasAccepted > 0 ? "to-right" : "to-left");
 
   $currentCard.classList.add("inactive");

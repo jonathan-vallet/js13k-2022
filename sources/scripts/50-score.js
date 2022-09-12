@@ -1,7 +1,12 @@
 function updateScore(hasAccepted, currentCard) {
+  console.log(
+    hasAccepted,
+    currentCard.error,
+    hasAccepted < 0 && !currentCard.error
+  );
   if (
     (hasAccepted > 0 && currentCard.error) ||
-    (!hasAccepted < 0 && !currentCard.error)
+    (hasAccepted < 0 && !currentCard.error)
   ) {
     zzfxP(failSound);
     combo = 0;
@@ -36,7 +41,7 @@ function updateScoreDisplay() {
 }
 
 function updateCombo() {
-  let message = `${getRandomItem(["🤘", "🚀", "🔥"])} Combo x${combo}!`;
+  let message = `${getRandomItem(["🤘", "🚀", "🔥"])} Combo x${combo}!<br>`;
   if (combo % 3 == 0) {
     let bonus = Math.min(combo / 3, 5);
     gameTimer += bonus * 1000;

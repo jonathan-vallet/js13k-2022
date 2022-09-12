@@ -12,6 +12,7 @@ let gameTimer;
 let updateTimerInterval;
 let isSwiping = false;
 let gameMusic;
+let isSoundMuted = false;
 
 let $gameWrapper = $("gameWrapper");
 let $cardList = $("cardList");
