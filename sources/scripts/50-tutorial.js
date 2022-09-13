@@ -11,7 +11,7 @@ function showTutorial() {
     if (index > 1) {
       character.mouth = customizationList.mouth[1];
     }
-    if (index > 3) {
+    if (index == 4) {
       character.eye = customizationList.eye[3];
       character.mouth = customizationList.mouth[2];
       character.eyebrow = customizationList.eyebrow[3];

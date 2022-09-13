@@ -65,9 +65,19 @@ function endGame() {
   gameMusic.stop();
 
   let character = setDemonFace();
-  character.eye = customizationList.eye[3];
-  character.mouth = customizationList.mouth[2];
-  character.eyebrow = customizationList.eyebrow[3];
+  // Change face depending on score
+  if (score < 10) {
+    character.eye = customizationList.eye[3];
+  }
+  if (score < 15) {
+    character.eyebrow = customizationList.eyebrow[3];
+  }
+  if (score < 42) {
+    character.mouth = customizationList.mouth[1];
+  }
+  if (score < 25) {
+    character.mouth = customizationList.mouth[2];
+  }
   $$("#end .card__image").innerHTML = drawCharacterFace(character);
 
   $gameWrapper.dataset.screen = 3;
